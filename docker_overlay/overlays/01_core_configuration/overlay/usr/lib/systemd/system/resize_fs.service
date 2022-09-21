@@ -1,0 +1,10 @@
+[Unit]
+Description=Resize Root Partition
+ConditionPathExists=/opt/ovos/resize_fs
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/ovos/resize_root_partition.sh
+
+[Install]
+WantedBy=multi-user.target
