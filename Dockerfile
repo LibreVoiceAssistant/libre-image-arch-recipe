@@ -5,9 +5,9 @@ RUN apt update && \
 
 RUN mkdir /build && \
     cd /build && \
-    wget http://downloads.openvoiceos.com/Manjaro-ARM-minimal-rpi4-22.08.img.xz
+    wget http://downloads.openvoiceos.com/Manjaro-ARM-minimal-rpi4-22.08.img.gz
 
-RUN apt install -y sudo qemu-user-static xz-utils git
+RUN apt install -y sudo qemu-user-static xz-utils git gzip
 
 RUN pip install pytz requests
 
