@@ -4,7 +4,7 @@
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${BASE_DIR}" || exit 10
 
-kernel=$(ls /lib/modules)
+#kernel="5.15.56-1-MANJARO-ARM-RPI"
 #kernel="5.4.0-1052-raspi"
 
 # Install system dependencies
@@ -15,11 +15,11 @@ CFLAGS="-fcommon" pip install smbus smbus2 spidev rpi.gpio
 # Build and load VocalFusion Driver
 git clone https://github.com/OpenVoiceOS/vocalfusiondriver
 cd vocalfusiondriver/driver || exit 10
-sed -ie "s|\$(shell uname -r)|${kernel}|g" Makefile
+sed -ie "s|\$(shell uname -r)|5.15.56-1-MANJARO-ARM-RPI|g" Makefile
 make all || exit 2
-mkdir "/lib/modules/${kernel}/kernel/drivers/vocalfusion"
-cp vocalfusion* "/lib/modules/${kernel}/kernel/drivers/vocalfusion" || exit 2
-depmod ${kernel} -a
+mkdir "/lib/modules/5.15.56-1-MANJARO-ARM-RPI/kernel/drivers/vocalfusion"
+cp vocalfusion* "/lib/modules/5.15.56-1-MANJARO-ARM-RPI/kernel/drivers/vocalfusion" || exit 2
+depmod 5.15.56-1-MANJARO-ARM-RPI -a
 # `modinfo -k ${kernel} vocalfusion-soundcard` should show the module info now
 
 # Configure pulse user
