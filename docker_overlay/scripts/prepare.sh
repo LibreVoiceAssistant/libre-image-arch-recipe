@@ -34,9 +34,11 @@ sudo mount -o loop,offset=512000512 "${image_file}" mnt && echo "Mounted root im
 ls mnt
 sudo mkdir -p mnt/run/systemd/resolve
 sudo mount --bind /run/systemd/resolve mnt/run/systemd/resolve  && echo "Mounted resolve directory from host" || exit 10
+sudo mount --bind /etc/resolv.conf mnt/etc/resolv.conf
 sudo mount -t sysfs sys mnt/sys
 sudo mount -t proc proc mnt/proc
 sudo mount -o bind /dev mnt/dev
+
 
 echo "Writing Build Info to Image"
 sudo mkdir -p mnt/opt/ovos

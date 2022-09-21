@@ -27,7 +27,7 @@ cd "${build_dir}" || exit 10
 
 if [ ! -f Manjaro-ARM-minimal-rpi4-22.08.img.xz ]; then
     echo "Downloading Base Image"
-    wget https://github.com/manjaro-arm/rpi4-images/releases/download/22.08/Manjaro-ARM-minimal-rpi4-22.08.img.xz
+    wget http://downloads.openvoiceos.com/Manjaro-ARM-minimal-rpi4-22.08.img.xz
 fi
 
 xz --decompress -T0 Manjaro-ARM-minimal-rpi4-22.08.img.xz -v --keep && echo "Decompressed Image"

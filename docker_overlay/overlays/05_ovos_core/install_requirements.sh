@@ -13,6 +13,11 @@ cd "${BASE_DIR}" || exit 10
 cp -rf overlay/* / || exit 2
 cd /home/ovos || exit 2
 
+# Lets try the tflite stuff in 3.10
+pip3 install wheel
+pip3 install https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0/tflite_runtime-2.10.0-cp310-none-linux_aarch64.whl
+pip3 install https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
+
 # Install Core
 pip3 install "git+https://github.com/OpenVoiceOS/ovos-core@${CORE_REF:-dev}#egg=ovos_core[all]" || exit 11
 echo "Core Installed"
@@ -45,8 +50,24 @@ chmod +x /opt/ovos/*.sh
 chmod +x /usr/sbin/*
 chmod +x /usr/bin/*
 
-# Install Skills
+# Install Plugins
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-audio-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-vosk
+pip3 install git+https://github.com/OpenVoiceOS/ovos_cli_client
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-google-tx
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-pico
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic3
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic2
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic
+pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-chromium
+pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-selene
+pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-pocketsphinx
+pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise
+pip3 install git+https://github.com/OpenVoiceOS/ovos-intent-plugin-padatious
+pip3 install git+https://github.com/OpenVoiceOS/OVOS-plugin-manager
 
+# Install Skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-setup.openvoiceos && pip3 install -r requirements.txt)
 
@@ -86,6 +107,21 @@ chmod +x /usr/bin/*
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/ovos-skills-info ovos-skills-info.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/ovos-skills-info.openvoiceos && pip3 install -r requirements.txt)
 
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-wolfie skill-wolfie.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-wolfie.openvoiceos && pip3 install -r requirements.txt)
+
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-wikipedia-for-humans skill-wikipedia-for-humans.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-wikipedia-for-humans.openvoiceos && pip3 install -r requirements.txt)
+
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/JarbasSkills/skill-youtube-music skill-youtube-music.jarbasskills)
+(cd /home/ovos/.local/share/mycroft/skills/skill-youtube-music.jarbasskills && pip3 install -r requirements.txt)
+
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/AIIX/food-wizard food-wizard.aiix)
+(cd /home/ovos/.local/share/mycroft/skills/food-wizard.aiix && pip3 install -r requirements.txt)
+
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-news skill-news.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-news.openvoiceos && pip3 install -r requirements.txt)
+
 # Install PHAL Plugins
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-notification-widgets
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-network-manager
@@ -100,5 +136,18 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-brightness-cont
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
 
+# Missing Fixes
+pip3 install filelock
+pip3 install six
+pip3 install cffi
+pip install git+https://git.skeh.site/skeh/pyaudio
+
+# Just incase
+pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
+pip3 install git+https://github.com/OpenVoiceOS/OVOS-workshop
+
+# Untar
+(cd /usr/share/mycroft/Mimic2TTSPlugin/kusal/ && tar -xvzf en-us.tar.gz)
+
 # Setup Completed
-echo "Setup Complete"
+echo "OVOS Core Setup Complete"

@@ -5,7 +5,7 @@ RUN apt update && \
 
 RUN mkdir /build && \
     cd /build && \
-    wget https://github.com/manjaro-arm/rpi4-images/releases/download/22.08/Manjaro-ARM-minimal-rpi4-22.08.img.xz
+    wget http://downloads.openvoiceos.com/Manjaro-ARM-minimal-rpi4-22.08.img.xz
 
 RUN apt install -y sudo qemu-user-static xz-utils git
 

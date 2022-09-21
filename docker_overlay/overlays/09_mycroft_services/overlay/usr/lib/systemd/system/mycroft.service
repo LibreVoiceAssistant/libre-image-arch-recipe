@@ -1,0 +1,13 @@
+[Unit]
+Description=Mycroft A.I. Software stack.
+After=pulseaudio.service NetworkManager.service
+
+[Service]
+User=mycroft
+WorkingDirectory=/home/mycroft
+Type=oneshot
+ExecStart=/bin/true
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

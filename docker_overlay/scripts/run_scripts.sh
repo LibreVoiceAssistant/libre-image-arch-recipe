@@ -36,6 +36,7 @@ get_choice() {
         6) bash /tmp/06_dashboard/install_ovos_dashboard.sh;;
         7) bash /tmp/07_camera/configure_camera.sh;;
         8) bash /tmp/08_splash_screen/configure_splash.sh;;
+        9) bash /tmp/09_mycroft_services/install_ovos_services.sh;;
         *) ;;
     esac
 }
@@ -49,6 +50,7 @@ if [ ${1} == "all" ]; then
     bash /tmp/06_dashboard/install_ovos_dashboard.sh
     bash /tmp/07_camera/configure_camera.sh
     bash /tmp/08_splash_screen/configure_splash.sh
+    bash /tmp/09_mycroft_services/install_ovos_services.sh
     exit 0
 fi
 
