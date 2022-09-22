@@ -43,16 +43,16 @@ get_choice() {
 }
 
 if [ ${1} == "all" ]; then
-#     bash /tmp/01_core_configuration/configure_arch.sh
-#     bash /tmp/02_network_manager/setup_wifi_connect.sh
-#     bash /tmp/03_sj201/setup_sj201.sh
-#     bash /tmp/04_embedded_shell/install_gui_shell.sh
-#     bash /tmp/05_ovos_core/install_requirements.sh
-#     bash /tmp/06_dashboard/install_ovos_dashboard.sh
-#     bash /tmp/07_camera/configure_camera.sh
-#     bash /tmp/08_splash_screen/configure_splash.sh
-#     bash /tmp/09_mycroft_services/install_ovos_services.sh
-#     bash /tmp/10_fix_boot_mark2/fix_ovos_mark2_boot.sh
+    bash /tmp/01_core_configuration/configure_arch.sh
+    bash /tmp/02_network_manager/setup_wifi_connect.sh
+    bash /tmp/03_sj201/setup_sj201.sh
+    bash /tmp/04_embedded_shell/install_gui_shell.sh
+    bash /tmp/05_ovos_core/install_requirements.sh
+    bash /tmp/06_dashboard/install_ovos_dashboard.sh
+    bash /tmp/07_camera/configure_camera.sh
+    bash /tmp/08_splash_screen/configure_splash.sh
+    bash /tmp/09_mycroft_services/install_ovos_services.sh
+    bash /tmp/10_fix_boot_mark2/fix_ovos_mark2_boot.sh
     echo "testing unmount issues"
     exit 0
 fi
