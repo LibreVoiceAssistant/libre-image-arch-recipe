@@ -9,12 +9,15 @@ cd "${BASE_DIR}" || exit 10
 
 # Install system dependencies
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu base-devel python-pip i2c-tools raspberrypi-firmware pulseaudio pulseaudio-zeroconf alsa-utils git
+pacman --noconfirm -Syu python-pip i2c-tools pulseaudio pulseaudio-zeroconf alsa-utils git
 CFLAGS="-fcommon" pip install smbus smbus2 spidev rpi.gpio
 
 # Build and load VocalFusion Driver
 git clone https://github.com/OpenVoiceOS/vocalfusiondriver
 cd vocalfusiondriver/driver || exit 10
+
+ls /lib/modules/5.15.56-1-MANJARO-ARM-RPI/
+
 sed -ie "s|\$(shell uname -r)|5.15.56-1-MANJARO-ARM-RPI|g" Makefile
 make all || exit 2
 mkdir "/lib/modules/5.15.56-1-MANJARO-ARM-RPI/kernel/drivers/vocalfusion"

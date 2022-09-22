@@ -42,4 +42,8 @@ ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 pacman-key --init
 pacman-key --populate archlinuxarm manjaro manjaro-arm
 
+echo "Installing Base Deps"
+pacman --noconfirm -Syyuu
+pacman --noconfirm -Syu base-devel raspberrypi-firmware linux-headers
+
 echo "Core Configuration Complete"
