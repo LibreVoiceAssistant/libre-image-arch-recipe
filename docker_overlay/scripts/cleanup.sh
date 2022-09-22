@@ -23,3 +23,4 @@ sudo umount mnt/boot || exit 10
 sudo umount mnt || exit 10
 echo "Image unmounted"
 #rm -r mnt
+losetup -d /dev/loop0

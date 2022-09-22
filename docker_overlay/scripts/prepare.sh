@@ -22,6 +22,8 @@ cd "${build_dir}" || exit 10
 mkdir mnt
 
 loop=$(sudo losetup -fP --show "${image_file}")
+echo "Display loop info"
+echo ${loop}
 boot_part="${loop}p1"
 root_part="${loop}p2"
 sudo mount "${root_part}" mnt
