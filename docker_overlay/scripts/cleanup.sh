@@ -6,6 +6,7 @@ cd "${build_dir}" || exit 10
 
 lsof mnt
 sudo umount mnt/etc/resolv.conf || exit 10
+killall gpg-agent
 
 if [ -f mnt/etc/.resolv.conf ]; then
     sudo mv mnt/etc/.resolv.conf mnt/etc/resolv.conf

@@ -54,6 +54,7 @@ if [ ${1} == "all" ]; then
     bash /tmp/09_mycroft_services/install_ovos_services.sh
     bash /tmp/10_fix_boot_mark2/fix_ovos_mark2_boot.sh
     echo "testing unmount issues"
+    killall gpg-agent
     exit 0
 fi
 
