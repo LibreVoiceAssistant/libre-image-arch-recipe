@@ -27,8 +27,14 @@ echo ${loop}
 sleep 3
 boot_part="${loop}p1"
 root_part="${loop}p2"
-sudo mount "${boot_part}" mnt/boot/
+
+echo "Mounting ROOT PART"
 sudo mount "${root_part}" mnt
+echo "Mounted ROOT PART"
+sleep 3
+echo "Mounting BOOT PART"
+sudo mount "${boot_part}" mnt/boot/
+echo "Mounted BOOT PART"
 
 echo "Mounted Image FS"
 echo "------------------------------------"
