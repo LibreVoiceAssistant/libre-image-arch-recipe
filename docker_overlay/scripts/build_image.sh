@@ -67,9 +67,9 @@ mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}"
 echo "Compressing output file. This may take an hour or two..."
 compress_start=$(date +%s)
 xz --compress -T0 "${build_dir}/${filename}" -v
-compress_time=$(($(($(date +%s)-${compress_start}))/60))
+compress_time=$(($(($(date +%s)-compress_start))/60))
 echo "Image compressed in ${compress_time} minutes"
 mv "${build_dir}/${filename}.xz" "${output_dir}/${filename}.xz"
 echo "Image saved to ${output_dir}/${filename}.xz"
-runtime=$(($(($(date +%s)-${start}))/60))
+runtime=$(($(($(date +%s)-start))/60))
 echo "Image created in ${runtime} minutes"

@@ -16,38 +16,55 @@ BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 recipe_dir="/overlays"
 cd "${build_dir}" || exit 10
 
-mkdir boot
+# mkdir boot
+# mkdir mnt
+
 mkdir mnt
 
+loop=$(sudo losetup -fP --show "${image_file}")
+boot_part="${loop}p1"
+root_part="${loop}p2"
+sudo mount "${root_part}" mnt
+sudo mount "${boot_part}" mnt/boot/
+
+echo "Mounted Image FS"
+echo "------------------------------------"
 echo "Copying Boot Overlay Files"
 # Manjaro Minimal=32000000
-sudo mount -o loop,offset=32000000 "${image_file}" boot || exit 10
+#sudo mount -o loop,offset=32000000 "${image_file}" boot || exit 10
+
 if [ "${4}" == "respeaker" ]; then
     echo "Selected respeaker boot overlay"
-    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/overlays/* boot/overlays/
-    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/config.txt boot/config.txt
+    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/overlays/* mnt/boot/overlays/
+    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/config.txt mnt/boot/config.txt
 fi
 if [ "${4}" == "mark2" ]; then
     echo "Selected mark2 boot overlay"
-    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/overlays/* boot/overlays/
-    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt boot/config.txt
+    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/overlays/* mnt/boot/overlays/
+    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt mnt/boot/config.txt
 fi
 sleep 1  # Avoid busy target issues
-sudo umount boot
-rm -r boot
+
+#sudo umount boot
+#rm -r boot
 echo "Boot Files Configured"
+
+# Backup original resolv
+if [ -f mnt/etc/resolv.conf ]; then
+    sudo mv mnt/etc/resolv.conf mnt/etc/.resolv.conf
+fi
 
 echo "Mounting Image FS"
 # Manjaro Minimal=512000512
-sudo mount -o loop,offset=512000512 "${image_file}" mnt && echo "Mounted root image FS" || exit 10
+# sudo mount -o loop,offset=512000512 "${image_file}" mnt && echo "Mounted root image FS" || exit 10
 ls mnt
+ls mnt/boot/
 sudo mkdir -p mnt/run/systemd/resolve
 sudo mount --bind /run/systemd/resolve mnt/run/systemd/resolve  && echo "Mounted resolve directory from host" || exit 10
 sudo mount --bind /etc/resolv.conf mnt/etc/resolv.conf
 sudo mount -t sysfs sys mnt/sys
 sudo mount -t proc proc mnt/proc
 sudo mount -o bind /dev mnt/dev
-
 
 echo "Writing Build Info to Image"
 sudo mkdir -p mnt/opt/ovos
@@ -70,12 +87,14 @@ if [ "${4}" == "respeaker" ]; then
     echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
     cp "/scripts/run_scripts_respeaker.sh" mnt/tmp
     cp -r "${recipe_dir}/03_respeaker" mnt/tmp/
+    cp -r "${recipe_dir}/10_fix_boot_respeaker" mnt/tmp/
 fi
 
 if [ "${4}" == "mark2" ]; then
     echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
     cp "/scripts/run_scripts_mark2.sh" mnt/tmp
     cp -r "${recipe_dir}/03_sj201" mnt/tmp/
+    cp -r "${recipe_dir}/10_fix_boot_mark2" mnt/tmp/
 fi
 
 # # Configure bashrc so script runs on login (chroot)
