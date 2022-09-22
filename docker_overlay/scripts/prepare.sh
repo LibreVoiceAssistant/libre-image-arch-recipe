@@ -61,7 +61,7 @@ echo "Boot Files Configured"
 
 echo "Mounting Image FS"
 #Manjaro Minimal=512000512
-sudo mount -o loop,offset=512000512 "${image_file}" mnt && echo "Mounted root image FS" || exit 10
+sudo mount -o loop,offset=512000512,sizelimit=8305475072 "${image_file}" mnt && echo "Mounted root image FS" || exit 10
 sudo mkdir -p mnt/run/systemd/resolve
 sudo mount --bind /run/systemd/resolve mnt/run/systemd/resolve  && echo "Mounted resolve directory from host" || exit 10
 sudo mount --bind /etc/resolv.conf mnt/etc/resolv.conf
@@ -71,7 +71,7 @@ sudo mount -o bind /dev mnt/dev
 
 sleep 3
 
-sudo mount -o loop,offset=32000000 "${image_file}" mnt/boot/ || exit 10
+sudo mount -o loop,offset=32000000,sizelimit=480000512 "${image_file}" mnt/boot/ || exit 10
 
 if [ "${4}" == "respeaker" ]; then
     echo "Selected respeaker boot overlay"
