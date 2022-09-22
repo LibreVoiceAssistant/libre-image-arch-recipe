@@ -22,7 +22,16 @@ mkdir mnt
 echo "Copying Boot Overlay Files"
 # Manjaro Minimal=32000000
 sudo mount -o loop,offset=32000000 "${image_file}" boot || exit 10
-sudo cp -r ${recipe_dir}/00_boot_overlay/overlays/* boot/
+if [ "${4}" == "respeaker" ]; then
+    echo "Selected respeaker boot overlay"
+    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/overlays/* boot/overlays/
+    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/config.txt boot/config.txt
+fi
+if [ "${4}" == "mark2" ]; then
+    echo "Selected mark2 boot overlay"
+    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/overlays/* boot/overlays/
+    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt boot/config.txt
+fi
 sleep 1  # Avoid busy target issues
 sudo umount boot
 rm -r boot
@@ -46,7 +55,6 @@ sudo mkdir -p mnt/opt/ovos
 echo "Copying Image scripts"
 cp -r "${recipe_dir}/01_core_configuration" mnt/tmp/
 cp -r "${recipe_dir}/02_network_manager" mnt/tmp/
-cp -r "${recipe_dir}/03_sj201" mnt/tmp/
 cp -r "${recipe_dir}/04_embedded_shell" mnt/tmp/
 cp -r "${recipe_dir}/05_ovos_core" mnt/tmp/
 cp -r "${recipe_dir}/06_dashboard" mnt/tmp/
@@ -54,17 +62,34 @@ cp -r "${recipe_dir}/07_camera" mnt/tmp/
 cp -r "${recipe_dir}/08_splash_screen" mnt/tmp/
 cp -r "${recipe_dir}/09_mycroft_services" mnt/tmp/
 
-# Copy interactive script into base image
-cp "/scripts/run_scripts.sh" mnt/tmp
-
 # Copy variables into base image
 echo "export CORE_REF=${CORE_REF:-dev}" > mnt/tmp/vars.sh
 echo "export MAKE_THREADS=${MAKE_THREADS:-4}" >> mnt/tmp/vars.sh
 
+if [ "${4}" == "respeaker" ]; then
+    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
+    cp "/scripts/run_scripts_respeaker.sh" mnt/tmp
+    cp -r "${recipe_dir}/03_respeaker" mnt/tmp/
+fi
+
+if [ "${4}" == "mark2" ]; then
+    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
+    cp "/scripts/run_scripts_mark2.sh" mnt/tmp
+    cp -r "${recipe_dir}/03_sj201" mnt/tmp/
+fi
+
 # # Configure bashrc so script runs on login (chroot)
 if [ "${3}" == "-y" ]; then
      echo "Configuring script to run on chroot"
-     sudo cp "/scripts/bashrc" mnt/root/.bashrc
+     if [ "${4}" == "respeaker" ]; then
+        sudo cp "/scripts/bashrc-respeaker" mnt/root/.bashrc
+     fi
+     if [ "${4}" == "mark2" ]; then
+        sudo cp "/scripts/bashrc-mark2" mnt/root/.bashrc
+     fi
 fi
+
+sudo cp "/scripts/bashrc-cleanup" mnt/tmp/
+sudo cp "/scripts/cli_login.sh" mnt/tmp/
 
 sudo chroot mnt

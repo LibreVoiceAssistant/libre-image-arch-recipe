@@ -7,5 +7,5 @@ fi
 echo Looking at tmp
 ls /tmp/
 
-bash /tmp/run_scripts.sh all
+bash /tmp/run_scripts_mark2.sh all
 exit 0

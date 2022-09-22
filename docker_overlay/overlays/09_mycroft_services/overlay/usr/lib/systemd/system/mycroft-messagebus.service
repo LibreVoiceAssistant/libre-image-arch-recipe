@@ -4,11 +4,11 @@ PartOf=mycroft.service
 After=mycroft.service
 
 [Service]
-User=mycroft
+User=ovos
 Type=notify
-WorkingDirectory=/home/mycroft 
+WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/mycroft/.local/share/systemd/mycroft-systemd_messagebus.py
+ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_messagebus.py
 StandardOutput=append:/var/log/mycroft/bus.log
 StandardError=file:/var/log/mycroft/bus.error.log
 TimeoutStartSec=1m

@@ -17,7 +17,14 @@ output_dir=${OUTPUT_DIR:-"${BASE_DIR}/outputs"}
 echo "build_dir=${build_dir}"
 echo "output_dir=${output_dir}"
 
-export CORE_REF=${CORE_REF:-"FEAT_PiImageCompat"}
+export CORE_REF=${CORE_REF:-"dev"}
+
+image_build_type="mark2"
+if [ ${BUILD_TYPE} ]; then
+  image_build_type=${BUILD_TYPE}
+fi
+
+echo "Starting Image Build For ${image_build_type}"
 
 if [ ! -d "${build_dir}" ]; then
     echo "Creating 'build' directory"
@@ -39,7 +46,7 @@ echo "Got Build Info"
 # Cache sudo password for setup
 #echo "${passwd}" | sudo -S ls
 echo "Running Prepare"
-bash /scripts/prepare.sh "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}" -y
+bash /scripts/prepare.sh "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}" -y "${image_build_type}"
 
 # Cache sudo password for cleanup
 #echo "${passwd}" | sudo -S ls
@@ -52,7 +59,7 @@ if [ ! -d "${output_dir}" ]; then
 fi
 
 # Rename completed image file
-filename="${start}_ovos.img"
+filename="ovos-dev-edition-${image_build_type}-${start}.img"
 echo "Writing output file to: ${build_dir}/${filename}"
 mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}"
 

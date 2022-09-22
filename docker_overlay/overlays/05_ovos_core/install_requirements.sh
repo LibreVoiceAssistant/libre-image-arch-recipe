@@ -65,8 +65,10 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-selene
 pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-pocketsphinx
 pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise
-pip3 install git+https://github.com/OpenVoiceOS/ovos-intent-plugin-padatious
 pip3 install git+https://github.com/OpenVoiceOS/OVOS-plugin-manager
+pip3 install git+https://github.com/OpenVoiceOS/selene_api
+
+mkdir -p /home/ovos/.local/share/mycroft/skills
 
 # Install Skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
@@ -138,6 +140,8 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-ma
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
 
 # Missing Fixes
+pip3 install fann2
+pip3 install padatious
 pip3 install filelock
 pip3 install six
 pip3 install cffi

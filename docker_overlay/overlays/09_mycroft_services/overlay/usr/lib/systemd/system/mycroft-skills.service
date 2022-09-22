@@ -5,11 +5,11 @@ After=mycroft.service
 After=mycroft-messagebus.service
 
 [Service]
-User=mycroft
+User=ovos
 Type=notify
-WorkingDirectory=/home/mycroft
+WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/mycroft/.local/share/systemd/mycroft-systemd_skills.py
+ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_skills.py
 StandardOutput=append:/var/log/mycroft/skills.log
 StandardError=file:/var/log/mycroft/skills.error.log
 TimeoutStartSec=10m

@@ -1,0 +1,11 @@
+if [ -z "$PS1" ]; then
+        echo This shell is not interactive
+else
+        echo This shell is interactive
+fi
+
+echo Looking at tmp
+ls /tmp/
+
+bash /tmp/run_scripts_respeaker.sh all
+exit 0

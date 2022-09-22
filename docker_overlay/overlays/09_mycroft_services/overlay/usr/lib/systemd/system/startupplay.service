@@ -1,0 +1,13 @@
+[Unit]
+Description=Startup Play
+After=mycroft.service
+
+[Service]
+User=mycroft
+WorkingDirectory=/home/mycroft
+Type=idle
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/usr/bin/startupplay.sh
+
+[Install]
+WantedBy=mycroft.service

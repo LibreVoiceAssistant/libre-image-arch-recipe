@@ -5,13 +5,13 @@ After=mycroft.service
 After=mycroft-messagebus.service
 
 [Service]
-User=mycroft
+User=ovos
 Type=notify
-WorkingDirectory=/home/mycroft
+WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 Environment=AUDIODRIVER=pulseaudio
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/home/mycroft/.local/share/systemd/mycroft-systemd_audio.py
+ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_audio.py
 StandardOutput=append:/var/log/mycroft/audio.log
 StandardError=file:/var/log/mycroft/audio.error.log
 TimeoutStartSec=1m
