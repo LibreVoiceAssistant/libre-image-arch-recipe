@@ -64,12 +64,6 @@ echo "Mounting Image FS"
 sudo mount -o loop,offset=512000512,sizelimit=8305475072 "${image_file}" mnt && echo "Mounted root image FS" || exit 10
 sudo mkdir -p mnt/run/systemd/resolve
 sudo mount --bind /run/systemd/resolve mnt/run/systemd/resolve  && echo "Mounted resolve directory from host" || exit 10
-
-# Backup original resolv
-if [ -f mnt/etc/resolv.conf ]; then
-    sudo mv mnt/etc/resolv.conf mnt/etc/.resolv.conf
-fi
-
 sudo mount --bind /etc/resolv.conf mnt/etc/resolv.conf
 sudo mount -t sysfs sys mnt/sys
 sudo mount -t proc proc mnt/proc
@@ -93,6 +87,7 @@ sleep 2
 
 ls mnt
 ls mnt/boot/
+ls mnt/etc/
 
 echo "Writing Build Info to Image"
 sudo mkdir -p mnt/opt/ovos
