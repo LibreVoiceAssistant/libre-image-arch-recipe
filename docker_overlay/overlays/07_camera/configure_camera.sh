@@ -6,7 +6,7 @@ cd "${BASE_DIR}" || exit 10
 
 # Install build dependencies
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu boost gnutls gst-plugin-base lttng-ust meson ninja openssl python-jinja python-ply python-yaml sed gtest doxygen graphviz libevent libtiff python-sphinx
+pacman --noconfirm -Syu boost gnutls lttng-ust meson ninja openssl python-jinja python-ply python-yaml sed gtest doxygen graphviz libevent libtiff python-sphinx
 
 # Clone and build libcamera
 git clone https://github.com/raspberrypi/libcamera.git

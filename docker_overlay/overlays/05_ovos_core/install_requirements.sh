@@ -15,8 +15,9 @@ cd /home/ovos || exit 2
 
 # Lets try the tflite stuff in 3.10
 pip3 install wheel
+pip3 install sdnotify
 pip3 install https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0/tflite_runtime-2.10.0-cp310-none-linux_aarch64.whl
-pip3 install https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core
 pip3 install "git+https://github.com/OpenVoiceOS/ovos-core@${CORE_REF:-dev}#egg=ovos_core[all]" || exit 11

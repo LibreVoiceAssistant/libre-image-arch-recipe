@@ -44,7 +44,7 @@ pacman-key --populate archlinuxarm manjaro manjaro-arm
 
 echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu base-devel raspberrypi-firmware
+pacman --noconfirm -Syu base-devel wget unzip raspberrypi-firmware
 
 echo "Fixing Locale"
 locale-gen

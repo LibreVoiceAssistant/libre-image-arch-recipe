@@ -11,7 +11,6 @@ echo "Temporary files removed"
 sudo umount mnt/run/systemd/resolve || exit 10
 sudo umount mnt/etc/resolv.conf || exit 10
 sudo umount mnt/sys || exit 10
-sudo umount mnt/sys || exit 10
 sudo umount mnt/proc || exit 10
 sudo umount mnt/dev || exit 10
 sudo umount mnt || exit 10
