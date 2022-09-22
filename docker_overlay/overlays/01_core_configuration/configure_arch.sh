@@ -46,4 +46,8 @@ echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
 pacman --noconfirm -Syu base-devel raspberrypi-firmware
 
+echo "Fixing Locale"
+locale-gen
+update-locale LANG=en_US.UTF-8
+
 echo "Core Configuration Complete"
