@@ -16,7 +16,6 @@ systemctl disable wpa_supplicant.service
 cp -r overlay/* /
 chmod -R ugo+x /usr/local/sbin
 chmod -R ugo+x /opt/ovos
-chown root:netdev /usr/bin/nmcli
 # Configure networking check on startup and restart
 systemctl enable wifi-setup.service
 

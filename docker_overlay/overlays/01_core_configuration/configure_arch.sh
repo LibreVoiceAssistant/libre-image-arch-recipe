@@ -44,6 +44,6 @@ pacman-key --populate archlinuxarm manjaro manjaro-arm
 
 echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu base-devel raspberrypi-firmware linux-headers
+pacman --noconfirm -Syu base-devel raspberrypi-firmware
 
 echo "Core Configuration Complete"
