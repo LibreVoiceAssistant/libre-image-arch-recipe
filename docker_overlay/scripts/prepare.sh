@@ -24,10 +24,11 @@ mkdir mnt
 loop=$(sudo losetup -fP --show "${image_file}")
 echo "Display loop info"
 echo ${loop}
+sleep 3
 boot_part="${loop}p1"
 root_part="${loop}p2"
-sudo mount "${root_part}" mnt
 sudo mount "${boot_part}" mnt/boot/
+sudo mount "${root_part}" mnt
 
 echo "Mounted Image FS"
 echo "------------------------------------"
