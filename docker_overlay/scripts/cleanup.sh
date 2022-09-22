@@ -4,6 +4,8 @@
 build_dir=${1}
 cd "${build_dir}" || exit 10
 
+lsof mnt
+
 sudo umount mnt/etc/resolv.conf || exit 10
 
 if [ -f mnt/etc/.resolv.conf ]; then
@@ -19,8 +21,8 @@ sudo umount mnt/run/systemd/resolve || exit 10
 sudo umount mnt/sys || exit 10
 sudo umount mnt/proc || exit 10
 sudo umount mnt/dev || exit 10
+lsof mnt/dev
+
 sudo umount mnt/boot || exit 10
 sudo umount mnt || exit 10
 echo "Image unmounted"
-#rm -r mnt
-losetup -d /dev/loop0
