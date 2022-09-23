@@ -16,8 +16,10 @@ groupadd dialout
 
 useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
 
-echo "ovos" | passwd --stdin
-echo "ovos" | passwd ovos --stdin
+echo -e "ovos" | passwd
+echo -e "ovos" | passwd ovos
+chpasswd < root:ovos
+chpasswd < ovos:ovos
 
 # Add ovos user to groups
 usermod -aG gpio ovos
