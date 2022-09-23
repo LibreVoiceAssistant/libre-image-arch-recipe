@@ -51,6 +51,7 @@ sudo mkdir -p mnt/opt/ovos
 sudo mkdir -p mnt/opt/ovos/install/
 
 echo "Copying Image scripts"
+cp -r "${recipe_dir}/pass.txt" mnt/opt/ovos/install/
 cp -r "${recipe_dir}/01_core_configuration" mnt/opt/ovos/install/
 cp -r "${recipe_dir}/02_network_manager" mnt/opt/ovos/install/
 cp -r "${recipe_dir}/04_embedded_shell" mnt/opt/ovos/install/
