@@ -1,13 +1,12 @@
-FROM python:3.8-slim
+FROM manjarolinux/base:latest
 
-RUN apt update && \
-    apt install -y wget
+RUN pacman --noconfirm -Syu wget
 
 RUN mkdir /build && \
     cd /build && \
     wget http://downloads.openvoiceos.com/Manjaro-ARM-minimal-rpi4-22.08.img.gz
 
-RUN apt install -y sudo qemu-user-static xz-utils git gzip lsof psmisc losetup
+RUN pacman --noconfirm -Syu sudo manjaro-arm-qemu-static xz git gzip lsof psmisc python python-pip manjaro-tools-base-git
 
 RUN pip install pytz requests
 

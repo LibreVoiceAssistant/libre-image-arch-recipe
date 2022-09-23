@@ -16,48 +16,7 @@ BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 recipe_dir="/overlays"
 cd "${build_dir}" || exit 10
 
-# mkdir boot
 mkdir mnt
-
-# mkdir mnt
-#
-# loop=$(sudo losetup -fP --show "${image_file}")
-# echo "Display loop info"
-# echo ${loop}
-# sleep 3
-# boot_part="${loop}p1"
-# root_part="${loop}p2"
-#
-# echo "Mounting ROOT PART"
-# sudo mount "${root_part}" mnt
-# echo "Mounted ROOT PART"
-# sleep 3
-# echo "Mounting BOOT PART"
-# sudo mount "${boot_part}" mnt/boot/
-# echo "Mounted BOOT PART"
-#
-# echo "Mounted Image FS"
-# echo "------------------------------------"
-# echo "Copying Boot Overlay Files"
-# Manjaro Minimal=32000000
-
-# sudo mount -o loop,offset=32000000 "${image_file}" mnt/boot || exit 10
-
-# if [ "${4}" == "respeaker" ]; then
-#    echo "Selected respeaker boot overlay"
-#    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/overlays/* mnt/boot/overlays/
-#    sudo cp -r ${recipe_dir}/00_boot_overlay_respeaker/config.txt mnt/boot/config.txt
-#fi
-#if [ "${4}" == "mark2" ]; then
-#    echo "Selected mark2 boot overlay"
-#    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/overlays/* mnt/boot/overlays/
-#    sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt mnt/boot/config.txt
-#fi
-#sleep 2  # Avoid busy target issues
-
-# sudo umount boot
-# rm -r boot
-echo "Boot Files Configured"
 
 echo "Mounting Image FS"
 #Manjaro Minimal=512000512
@@ -65,9 +24,6 @@ sudo mount -o loop,offset=512000512,sizelimit=8305475072 "${image_file}" mnt && 
 sudo mkdir -p mnt/run/systemd/resolve
 sudo mount --bind /run/systemd/resolve mnt/run/systemd/resolve  && echo "Mounted resolve directory from host" || exit 10
 sudo mount --bind /etc/resolv.conf mnt/etc/resolv.conf
-sudo mount -t sysfs sys mnt/sys
-sudo mount -t proc proc mnt/proc
-sudo mount -o bind /dev mnt/dev
 
 sleep 3
 
@@ -84,40 +40,46 @@ if [ "${4}" == "mark2" ]; then
     sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt mnt/boot/config.txt
 fi
 sleep 2
+echo "Boot Files Configured"
 
-ls mnt
-ls mnt/boot/
-ls mnt/etc/
+# ls mnt
+# ls mnt/boot/
+# ls mnt/etc/
 
 echo "Writing Build Info to Image"
 sudo mkdir -p mnt/opt/ovos
+sudo mkdir -p mnt/opt/ovos/install/
 
 echo "Copying Image scripts"
-cp -r "${recipe_dir}/01_core_configuration" mnt/tmp/
-cp -r "${recipe_dir}/02_network_manager" mnt/tmp/
-cp -r "${recipe_dir}/04_embedded_shell" mnt/tmp/
-cp -r "${recipe_dir}/05_ovos_core" mnt/tmp/
-cp -r "${recipe_dir}/06_dashboard" mnt/tmp/
-cp -r "${recipe_dir}/07_camera" mnt/tmp/
-cp -r "${recipe_dir}/08_splash_screen" mnt/tmp/
-cp -r "${recipe_dir}/09_mycroft_services" mnt/tmp/
+cp -r "${recipe_dir}/01_core_configuration" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/02_network_manager" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/04_embedded_shell" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/05_ovos_core" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/06_dashboard" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/07_camera" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/08_splash_screen" mnt/opt/ovos/install/
+cp -r "${recipe_dir}/09_mycroft_services" mnt/opt/ovos/install/
 
 # Copy variables into base image
-echo "export CORE_REF=${CORE_REF:-dev}" > mnt/tmp/vars.sh
-echo "export MAKE_THREADS=${MAKE_THREADS:-4}" >> mnt/tmp/vars.sh
+echo "export CORE_REF=${CORE_REF:-dev}" > mnt/opt/ovos/install/vars.sh
+echo "export MAKE_THREADS=${MAKE_THREADS:-4}" >> mnt/opt/ovos/install/vars.sh
 
 if [ "${4}" == "respeaker" ]; then
-    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
-    cp "/scripts/run_scripts_respeaker.sh" mnt/tmp
-    cp -r "${recipe_dir}/03_respeaker" mnt/tmp/
-    cp -r "${recipe_dir}/10_fix_boot_respeaker" mnt/tmp/
+    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/opt/ovos/install/vars.sh
+    cp "/scripts/run_scripts_respeaker.sh" mnt/opt/ovos/install/
+    cp "/scripts/run_scripts_respeaker.sh" mnt/usr/bin/
+    chmod 777 mnt/usr/bin/run_scripts_respeaker.sh
+    cp -r "${recipe_dir}/03_respeaker" mnt/opt/ovos/install/
+    cp -r "${recipe_dir}/10_fix_boot_respeaker" mnt/opt/ovos/install/
 fi
 
 if [ "${4}" == "mark2" ]; then
-    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/tmp/vars.sh
-    cp "/scripts/run_scripts_mark2.sh" mnt/tmp
-    cp -r "${recipe_dir}/03_sj201" mnt/tmp/
-    cp -r "${recipe_dir}/10_fix_boot_mark2" mnt/tmp/
+    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/opt/ovos/install/vars.sh
+    cp "/scripts/run_scripts_mark2.sh" mnt/opt/ovos/install/
+    cp "/scripts/run_scripts_mark2.sh" mnt/usr/bin/
+    chmod 777 mnt/usr/bin/run_scripts_mark2.sh
+    cp -r "${recipe_dir}/03_sj201" mnt/opt/ovos/install/
+    cp -r "${recipe_dir}/10_fix_boot_mark2" mnt/opt/ovos/install/
 fi
 
 # # Configure bashrc so script runs on login (chroot)
@@ -131,7 +93,13 @@ if [ "${3}" == "-y" ]; then
      fi
 fi
 
-sudo cp "/scripts/bashrc-cleanup" mnt/tmp/
-sudo cp "/scripts/cli_login.sh" mnt/tmp/
+sudo cp "/scripts/bashrc-cleanup" mnt/opt/ovos/install/
+sudo cp "/scripts/cli_login.sh" mnt/opt/ovos/install/
 
-sudo chroot mnt
+if [ "${4}" == "respeaker" ]; then
+    sudo manjaro-chroot mnt /bin/run_scripts_respeaker.sh
+fi
+
+if [ "${4}" == "mark2" ]; then
+    sudo manjaro-chroot mnt /bin/run_scripts_mark2.sh
+fi
