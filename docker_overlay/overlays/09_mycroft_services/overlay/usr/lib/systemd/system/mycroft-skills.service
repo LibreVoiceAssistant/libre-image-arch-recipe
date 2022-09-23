@@ -10,8 +10,8 @@ Type=notify
 WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_skills.py
-StandardOutput=append:/var/log/mycroft/skills.log
-StandardError=file:/var/log/mycroft/skills.error.log
+StandardOutput=append:/var/log/ovos/skills.log
+StandardError=file:/var/log/ovos/skills.error.log
 TimeoutStartSec=10m
 TimeoutStopSec=1m
 Restart=on-failure

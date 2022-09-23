@@ -16,6 +16,9 @@ groupadd dialout
 
 useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
 
+echo "ovos" | passwd --stdin
+echo "ovos" | passwd --stdin ovos
+
 # Add ovos user to groups
 usermod -aG gpio ovos
 usermod -aG video ovos
@@ -45,6 +48,7 @@ pacman-key --populate archlinuxarm manjaro manjaro-arm
 echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
 pacman --noconfirm -Syu base-devel wget unzip raspberrypi-firmware
+pacman --noconfirm -R manjaro-arm-oem-install
 
 echo "Fixing Locale"
 locale-gen

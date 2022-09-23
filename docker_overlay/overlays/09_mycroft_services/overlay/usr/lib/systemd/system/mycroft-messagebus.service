@@ -9,8 +9,8 @@ Type=notify
 WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_messagebus.py
-StandardOutput=append:/var/log/mycroft/bus.log
-StandardError=file:/var/log/mycroft/bus.error.log
+StandardOutput=append:/var/log/ovos/bus.log
+StandardError=file:/var/log/ovos/bus.error.log
 TimeoutStartSec=1m
 TimeoutStopSec=1m
 Restart=on-failure

@@ -10,8 +10,8 @@ Type=notify
 WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_voice.py
-StandardOutput=append:/var/log/mycroft/voice.log
-StandardError=file:/var/log/mycroft/voice.error.log
+StandardOutput=append:/var/log/ovos/voice.log
+StandardError=file:/var/log/ovos/voice.error.log
 TimeoutStartSec=1m
 TimeoutStopSec=1m
 Restart=on-failure

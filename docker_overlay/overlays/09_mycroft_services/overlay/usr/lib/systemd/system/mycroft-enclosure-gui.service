@@ -10,8 +10,8 @@ Type=notify
 WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_gui.py
-StandardOutput=append:/var/log/mycroft/enclosure_gui.log
-StandardError=file:/var/log/mycroft/enclosure_gui.error.log
+StandardOutput=append:/var/log/ovos/enclosure_gui.log
+StandardError=file:/var/log/ovos/enclosure_gui.error.log
 TimeoutStartSec=1m
 TimeoutStopSec=1m
 Restart=on-failure

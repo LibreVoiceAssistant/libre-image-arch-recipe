@@ -2,8 +2,8 @@
 Description=Mycroft GUI
 
 [Service]
-User=mycroft
-WorkingDirectory=/home/mycroft
+User=ovos
+WorkingDirectory=/home/ovos
 Environment=QT_QPA_PLATFORM=eglfs
 Environment=QT_QPA_EGLFS_HIDECURSOR=1
 Environment=QT_QPA_EGLFS_KMS_ATOMIC=1
@@ -22,7 +22,7 @@ Environment=LIBEXEC_PATH=/libexec:/usr/libexec:/usr/lib/libexec
 Environment=QML2_IMPORT_PATH=/usr/lib/qt/qml
 ExecStartPre=-/usr/bin/kbuildsycoca5
 ExecStart=ovos-shell --maximize
-StandardOutput=append:/var/log/mycroft/ovos-shell.log
+StandardOutput=append:/var/log/ovos/ovos-shell.log
 Restart=on-failure
 
 [Install]

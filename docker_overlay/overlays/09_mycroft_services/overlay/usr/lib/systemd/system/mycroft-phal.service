@@ -10,8 +10,8 @@ Type=notify
 WorkingDirectory=/home/ovos
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_phal.py
-StandardOutput=append:/var/log/mycroft/phal.log
-StandardError=file:/var/log/mycroft/phal.error.log
+StandardOutput=append:/var/log/ovos/phal.log
+StandardError=file:/var/log/ovos/phal.error.log
 TimeoutStartSec=1m
 TimeoutStopSec=1m
 Restart=on-failure

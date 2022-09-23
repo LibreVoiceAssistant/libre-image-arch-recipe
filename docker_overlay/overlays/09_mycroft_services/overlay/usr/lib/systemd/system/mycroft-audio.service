@@ -12,8 +12,8 @@ Environment=PYTHONUNBUFFERED=1
 Environment=AUDIODRIVER=pulseaudio
 Environment=XDG_RUNTIME_DIR=/run/user/1000
 ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_audio.py
-StandardOutput=append:/var/log/mycroft/audio.log
-StandardError=file:/var/log/mycroft/audio.error.log
+StandardOutput=append:/var/log/ovos/audio.log
+StandardError=file:/var/log/ovos/audio.error.log
 TimeoutStartSec=1m
 TimeoutStopSec=1m
 Restart=on-failure
