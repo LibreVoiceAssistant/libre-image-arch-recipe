@@ -60,16 +60,16 @@ fi
 
 # Rename completed image file
 filename="ovos-dev-edition-${image_build_type}-${start}.img"
-echo "Writing output file to: ${build_dir}/${filename}"
-mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}"
+echo "Writing output file to: ${build_dir}/${filename}-stable"
+mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}-stable"
 
 # Compress image and move to output directory
 echo "Compressing output file. This may take an hour or two..."
 compress_start=$(date +%s)
-xz --compress -T0 "${build_dir}/${filename}" -v
+xz --compress -T0 "${build_dir}/${filename}-stable" -v
 compress_time=$(($(($(date +%s)-compress_start))/60))
 echo "Image compressed in ${compress_time} minutes"
-mv "${build_dir}/${filename}.xz" "${output_dir}/${filename}.xz"
-echo "Image saved to ${output_dir}/${filename}.xz"
+mv "${build_dir}/${filename}-stable.xz" "${output_dir}/${filename}-stable.xz"
+echo "Image saved to ${output_dir}/${filename}-stable.xz"
 runtime=$(($(($(date +%s)-start))/60))
 echo "Image created in ${runtime} minutes"
