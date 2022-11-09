@@ -12,10 +12,10 @@ pacman --noconfirm -Syu python-pip i2c-tools pulseaudio pulseaudio-zeroconf alsa
 CFLAGS="-fcommon" pip install smbus smbus2 spidev rpi.gpio
 
 pip3 install sj201-interface
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-mk2
+pip3 install ovos-PHAL-plugin-mk2
 pip3 install git+https://github.com/NeonGeckoCom/neon-phal-plugin-linear_led
-pip3 install git+https://github.com/NeonGeckoCom/neon-phal-plugin-switches
-pip3 install git+https://github.com/NeonGeckoCom/neon-phal-plugin-fan
+pip3 install neon-phal-plugin-switches
+pip3 install neon-phal-plugin-fan
 
 # Determine kernel with build directory
 if [ "$(ls -1 /lib/modules | wc -l)" -gt 1 ]; then
