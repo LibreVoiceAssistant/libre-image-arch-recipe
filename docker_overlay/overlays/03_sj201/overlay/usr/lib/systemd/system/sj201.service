@@ -1,5 +1,6 @@
 [Unit]
 Description=SJ201 Service
+Before=pulseaudio.service
 
 [Service]
 Type=oneshot

@@ -10,11 +10,12 @@ disable_overscan=1
 dtparam=krnbt=on
 
 #enable sound
-#dtparam=audio=on
+dtparam=audio=on
 #hdmi_drive=2
 
 #enable vc4
-dtoverlay=vc4-kms-v3d
+dtoverlay=vc4-fkms-v3d
+display_auto_detect=1
 max_framebuffers=2
 disable_splash=1
 dtoverlay=i2s-mmap

@@ -1,26 +1,23 @@
 #!/bin/bash
 
-
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${BASE_DIR}" || exit 10
-
-# install system packages
-pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu python-setuptools python python-gobject libffi swig portaudio mimic mpg123 screen flac curl icu libjpeg-turbo jq pulseaudio pulseaudio-alsa fann sox python-pip python-virtualenv
-
 # Copy overlay files (default configuration)
 cd "${BASE_DIR}" || exit 10
 cp -rf overlay/* / || exit 2
 cd /home/ovos || exit 2
 
-# Lets try the tflite stuff in 3.10
+# Generic dependencies
 pip3 install wheel
 pip3 install sdnotify
+
+# Lets try the tflite stuff in 3.10
+pip3 install numpy==1.23.2
 pip3 install https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0/tflite_runtime-2.10.0-cp310-none-linux_aarch64.whl
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core
-pip3 install "git+https://github.com/OpenVoiceOS/ovos-core@${CORE_REF:-dev}#egg=ovos_core[all]" || exit 11
+pip3 install "git+https://github.com/OpenVoiceOS/ovos-core#egg=ovos_core[all]" || exit 11
 echo "Core Installed"
 
 # Download model files
@@ -34,13 +31,6 @@ export XDG_CONFIG_HOME="/home/ovos/.config"
 export XDG_DATA_HOME="/home/ovos/.local/share"
 export XDG_CACHE_HOME="/home/ovos/.cache"
 
-
-# Relocate any cached data to the `ovos` user
-#rm -r /root/.cache/pip
-#mkdir -p /home/ovos/.cache
-#cp -rf /root/.cache/* /home/ovos/.cache/
-#rm -r /root/.cache
-
 mkdir /home/ovos/logs
 
 # Fix home directory permissions
@@ -52,21 +42,31 @@ chmod +x /usr/sbin/*
 chmod +x /usr/bin/*
 
 # Install Plugins
-pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-audio-plugin
-pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-vosk
 pip3 install git+https://github.com/OpenVoiceOS/ovos_cli_client
+pip3 install git+https://github.com/OpenVoiceOS/OVOS-plugin-manager
+pip3 install git+https://github.com/OpenVoiceOS/ovos-backend-client
+pip3 install git+https://github.com/OpenVoiceOS/ovos-phal
+
+# OCP
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-audio-plugin
+
+# TTS
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-google-tx
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-pico
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic3
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic2
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic2
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic3-server
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-server-plugin
+pip3 install git+https://github.com/NeonGeckoCom/neon-tts-plugin-larynx_server
+
+# WakeWords
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-vosk
+
+# STT
 pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-chromium
 pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-selene
-pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-plugin-pocketsphinx
 pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
-pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise
-pip3 install git+https://github.com/OpenVoiceOS/OVOS-plugin-manager
-pip3 install git+https://github.com/OpenVoiceOS/selene_api
 
 mkdir -p /home/ovos/.local/share/mycroft/skills
 
@@ -92,11 +92,11 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-timer skill-ovos-timer.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-timer.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-wikipedia-for-humans skill-wikipedia-for-humans.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-wikipedia-for-humans.openvoiceos && pip3 install -r requirements.txt)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-wikipedia skill-ovos-wikipedia.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-wikipedia.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-date-time skill-date-time.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-date-time.openvoiceos && pip3 install -r requirements.txt)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-date-time skill-ovos-date-time.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-date-time.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-volume skill-ovos-volume.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-volume.openvoiceos && pip3 install -r requirements.txt)
@@ -110,11 +110,8 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/ovos-skills-info ovos-skills-info.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/ovos-skills-info.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-wolfie skill-wolfie.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-wolfie.openvoiceos && pip3 install -r requirements.txt)
-
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-wikipedia-for-humans skill-wikipedia-for-humans.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-wikipedia-for-humans.openvoiceos && pip3 install -r requirements.txt)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-wolfie skill-ovos-wolfie.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-wolfie.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/JarbasSkills/skill-youtube-music skill-youtube-music.jarbasskills)
 (cd /home/ovos/.local/share/mycroft/skills/skill-youtube-music.jarbasskills && pip3 install -r requirements.txt)
@@ -129,7 +126,6 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-notification-widgets
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-network-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-gui-network-client
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-mk2
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-balena-wifi
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-alsa
@@ -138,6 +134,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-dashboard
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-brightness-control-rpi
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
+pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
 
 # Missing Fixes
 pip3 install fann2
@@ -145,9 +142,9 @@ pip3 install padatious
 pip3 install filelock
 pip3 install six
 pip3 install cffi
-pip install git+https://git.skeh.site/skeh/pyaudio
+pip3 install git+https://git.skeh.site/skeh/pyaudio
 
-# Just incase
+# Always have these two in last to be upto date
 pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
 pip3 install git+https://github.com/OpenVoiceOS/OVOS-workshop
 
