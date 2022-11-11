@@ -46,7 +46,7 @@ pacman-key --populate archlinuxarm manjaro manjaro-arm
 
 echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu base-devel wget unzip raspberrypi-firmware
+pacman --noconfirm -Syu base-devel wget unzip raspberrypi-firmware raspberrypi-userland-aarch64-git glibc-locales shairport-sync spotifyd
 pacman --noconfirm -R manjaro-arm-oem-install
 pacman --noconfirm -Syu python-setuptools python python-gobject libffi swig portaudio mimic mpg123 screen flac curl icu libjpeg-turbo jq pulseaudio pulseaudio-alsa fann sox python-pip python-virtualenv
 

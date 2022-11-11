@@ -98,7 +98,7 @@ def send_image(bin_filename, verbose=False, max_spi_speed_mhz = 5, block_transfe
         #GPIO.setmode(GPIO.BCM)
 
         boot_sel = 37 #26 #= 25 # fix these numbers to be Wiring Pi
-        rst_n    = 13 #27 #= 2  
+        rst_n    = 13 #27 #= 2
         GPIO.setup(boot_sel, GPIO.IN) # Normally, the Pi should not drive this
         GPIO.setup(rst_n, GPIO.OUT, initial=GPIO.HIGH)
 

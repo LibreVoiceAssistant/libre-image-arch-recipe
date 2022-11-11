@@ -27,16 +27,14 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# This needs to run as root
+revision=$(sj201 get-revision)
 
-# Enable Driver Overlay
-dtoverlay xvf3510
-
-# Flash xmos firmware
-xvf3510-flash --direct /usr/lib/firmware/xvf3510/app_xvf3510_int_spi_boot_v4_1_0.bin
-# Init TI Amp
-sj201 init-ti-amp
-# Reset LEDs
-sj201 reset-led green
-# Reset fan speed
-sj201 set-fan-speed 30
+if [ "${revision}" == "10" ]; then
+    echo "Setting screen brightness to 0"
+    echo 0 > /sys/class/backlight/rpi_backlight/brightness
+    echo "Setting fan speed to 0"
+    sj201 set-fan-speed 0
+    while true; do
+        sleep 100
+    done
+fi
