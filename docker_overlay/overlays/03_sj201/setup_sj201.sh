@@ -6,14 +6,20 @@ cd "${BASE_DIR}" || exit 10
 #kernel="5.15.56-1-MANJARO-ARM-RPI"
 #kernel="5.4.0-1052-raspi"
 
+# Copy required overlay files
+cd ${BASE_DIR} || exit 10
+cp -r overlay/* /
+chmod -R ugo+x /usr/bin
+chmod -R ugo+x /usr/sbin
+chmod ugo+x /opt/ovos/configure_sj201_on_boot.sh
+
 # Install system dependencies
 pacman --noconfirm -Syyuu
 pacman --noconfirm -Syu python-pip i2c-tools pulseaudio pulseaudio-zeroconf alsa-utils git
 CFLAGS="-fcommon" pip install smbus smbus2 spidev rpi.gpio
 
 pip3 install sj201-interface
-pip3 install ovos-PHAL-plugin-mk2
-pip3 install git+https://github.com/NeonGeckoCom/neon-phal-plugin-linear_led
+pip3 install neon-phal-plugin-linear-led
 pip3 install neon-phal-plugin-switches
 pip3 install neon-phal-plugin-fan
 
@@ -53,13 +59,6 @@ depmod ${kernel} -a
 # Disable userspace pulseaudio services
 systemctl --global disable pulseaudio.service pulseaudio.socket
 
-# Copy required overlay files
-cd ${BASE_DIR} || exit 10
-cp -r overlay/* /
-chmod -R ugo+x /usr/bin
-chmod -R ugo+x /usr/sbin
-chmod ugo+x /opt/ovos/configure_sj201_on_boot.sh
-
 # Ensure python bin exists for added scripts
 if [ ! -f "/usr/bin/python" ]; then
   ln -s /usr/bin/python3 /usr/bin/python
@@ -69,5 +68,6 @@ fi
 systemctl enable pulseaudio.service
 systemctl enable sj201
 systemctl enable sj201-shutdown
+systemctl enable poweroff
 
 echo "Audio Setup Complete"
