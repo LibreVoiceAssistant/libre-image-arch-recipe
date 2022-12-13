@@ -19,6 +19,7 @@ dtparam=audio=on
 
 # Enable I2C interfaces on the GPIO header
 dtparam=i2c_arm=on
+dtparam=i2c1=on
 
 # Enable SPI for SJ201 Flashing
 dtparam=spi=on
@@ -44,3 +45,5 @@ gpu_mem_1024=128
 
 # Disable rainbow splash screen
 disable_splash=1
+
+dtoverlay=xvf3510

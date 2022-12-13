@@ -12,8 +12,8 @@ pip3 install wheel
 pip3 install sdnotify
 
 # Lets try the tflite stuff in 3.10
-pip3 install numpy==1.23.2
-pip3 install https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0/tflite_runtime-2.10.0-cp310-none-linux_aarch64.whl
+pip3 install numpy==1.23.5
+pip3 install https://github.com/hjonnala/snippets/blob/main/wheels/python3.10/tflite_runtime-2.5.0.post1-cp310-cp310-linux_x86_64.whl
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core
@@ -83,9 +83,6 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-camera skill-camera.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-camera.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-camera skill-camera.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-camera.openvoiceos && pip3 install -r requirements.txt)
-
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-alarm skill-ovos-alarm.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-alarm.openvoiceos && pip3 install -r requirements.txt)
 
@@ -127,7 +124,6 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-notification-wi
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-network-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-gui-network-client
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-balena-wifi
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-alsa
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-system
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-dashboard
@@ -135,6 +131,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-brightness-cont
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
+pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant
 
 # Missing Fixes
 pip3 install fann2
