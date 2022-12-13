@@ -15,8 +15,8 @@ groupadd i2c
 groupadd dialout
 
 useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
-useradd -r -G pulse,pulse-access,audio,video,render -s /bin/bash pulse
-useradd -r -G pulse,pulse-access,audio,video,render -s /bin/bash pulse-access
+useradd -r -s /bin/bash pulse
+useradd -r -s /bin/bash pulse-access
 
 chpasswd < /opt/ovos/install/pass.txt
 
@@ -33,6 +33,20 @@ usermod -aG dialout ovos
 # Add root user to groups
 usermod -aG pulse root
 usermod -aG pulse-access root
+
+# Add pulse user to groups
+
+usermod -aG pulse pulse
+usermod -aG pulse-access pulse
+usermod -aG audio pulse
+usermod -aG video pulse
+usermod -aG render pulse
+
+usermod -aG pulse pulse-access
+usermod -aG pulse-access pulse-access
+usermod -aG audio pulse pulse-access
+usermod -aG video pulse pulse-access
+usermod -aG render pulse pulse-access
 
 # Enable new services
 systemctl enable resize_fs.service
