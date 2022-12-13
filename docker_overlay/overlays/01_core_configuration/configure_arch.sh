@@ -10,10 +10,12 @@ chmod -R ugo+x /opt/ovos
 # Add pulse groups
 groupadd pulse
 groupadd pulse-access
+echo "Added Groups Pulse and Pulse Access"
 
 # Add any expected groups
-useradd -g pulse,pulse-access -s /bin/bash pulse
-useradd -g pulse,pulse-access -s /bin/bash pulse-access
+useradd -s /bin/bash pulse
+useradd -s /bin/bash pulse-access
+echo "Added Users Pulse and Pulse Access"
 
 groupadd gpio
 groupadd pulse
@@ -34,10 +36,12 @@ usermod -a -G pulse ovos
 usermod -a -G pulse-access ovos
 usermod -a -G i2c ovos
 usermod -a -G dialout ovos
+echo "Added Groups For User OVOS"
 
 # Add root user to groups
 usermod -a -G pulse root
 usermod -a -G pulse-access root
+echo "Added Groups For User Root"
 
 # Add pulse user to groups
 usermod -a -G pulse pulse
@@ -45,12 +49,14 @@ usermod -a -G pulse-access pulse
 usermod -a -G audio pulse
 usermod -a -G video pulse
 usermod -a -G render pulse
+echo "Added Groups For User Pulse"
 
 usermod -a -G pulse pulse-access
 usermod -a -G pulse-access pulse-access
 usermod -a -G audio pulse pulse-access
 usermod -a -G video pulse pulse-access
 usermod -a -G render pulse pulse-access
+echo "Added Groups For User Pulse Access"
 
 # Enable new services
 systemctl enable resize_fs.service
