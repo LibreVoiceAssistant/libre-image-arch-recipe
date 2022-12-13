@@ -22,32 +22,32 @@ useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2
 chpasswd < /opt/ovos/install/pass.txt
 
 # Add ovos user to groups
-usermod -aG gpio ovos
-usermod -aG video ovos
-usermod -aG input ovos
-usermod -aG render ovos
-usermod -aG pulse ovos
-usermod -aG pulse-access ovos
-usermod -aG i2c ovos
-usermod -aG dialout ovos
+usermod -a -G gpio ovos
+usermod -a -G video ovos
+usermod -a -G input ovos
+usermod -a -G render ovos
+usermod -a -G pulse ovos
+usermod -a -G pulse-access ovos
+usermod -a -G i2c ovos
+usermod -a -G dialout ovos
 
 # Add root user to groups
-usermod -aG pulse root
-usermod -aG pulse-access root
+usermod -a -G pulse root
+usermod -a -G pulse-access root
 
 # Add pulse user to groups
 
-usermod -aG pulse pulse
-usermod -aG pulse-access pulse
-usermod -aG audio pulse
-usermod -aG video pulse
-usermod -aG render pulse
+usermod -a -G pulse pulse
+usermod -a -G pulse-access pulse
+usermod -a -G audio pulse
+usermod -a -G video pulse
+usermod -a -G render pulse
 
-usermod -aG pulse pulse-access
-usermod -aG pulse-access pulse-access
-usermod -aG audio pulse pulse-access
-usermod -aG video pulse pulse-access
-usermod -aG render pulse pulse-access
+usermod -a -G pulse pulse-access
+usermod -a -G pulse-access pulse-access
+usermod -a -G audio pulse pulse-access
+usermod -a -G video pulse pulse-access
+usermod -a -G render pulse pulse-access
 
 # Enable new services
 systemctl enable resize_fs.service
