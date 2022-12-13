@@ -12,8 +12,8 @@ groupadd pulse
 groupadd pulse-access
 
 # Add any expected groups
-useradd -G pulse,pulse-access -s /bin/bash pulse
-useradd -G pulse,pulse-access -s /bin/bash pulse-access
+useradd -g pulse,pulse-access -s /bin/bash pulse
+useradd -g pulse,pulse-access -s /bin/bash pulse-access
 
 groupadd gpio
 groupadd pulse
