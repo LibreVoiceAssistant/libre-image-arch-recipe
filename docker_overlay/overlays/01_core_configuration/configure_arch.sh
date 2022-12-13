@@ -18,8 +18,8 @@ groupadd dialout
 echo "Added Groups GPIO I2C Dialout"
 
 # Add any expected groups
-useradd pulse
-useradd pulse-access
+useradd -g pulse pulse
+useradd -g pulse-access pulse-access
 echo "Added Users Pulse and Pulse Access"
 
 useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
