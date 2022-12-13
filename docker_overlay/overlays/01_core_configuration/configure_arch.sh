@@ -7,9 +7,13 @@ cd "${BASE_DIR}" || exit 10
 cp -r overlay/* /
 chmod -R ugo+x /opt/ovos
 
+# Add pulse groups
+groupadd pulse
+groupadd pulse-access
+
 # Add any expected groups
-useradd -s /bin/bash pulse
-useradd -s /bin/bash pulse-access
+useradd -G pulse,pulse-access -s /bin/bash pulse
+useradd -G pulse,pulse-access -s /bin/bash pulse-access
 
 groupadd gpio
 groupadd pulse
@@ -36,7 +40,6 @@ usermod -a -G pulse root
 usermod -a -G pulse-access root
 
 # Add pulse user to groups
-
 usermod -a -G pulse pulse
 usermod -a -G pulse-access pulse
 usermod -a -G audio pulse
