@@ -14,9 +14,9 @@ groupadd pulse-access
 groupadd i2c
 groupadd dialout
 
+useradd -r -G pulse pulse
+useradd -r -G pulse-access pulse-access
 useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
-useradd -r pulse
-useradd -r pulse-access
 
 chpasswd < /opt/ovos/install/pass.txt
 
