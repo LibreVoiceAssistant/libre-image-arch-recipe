@@ -120,10 +120,10 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills/skill-news.openvoiceos && pip3 install -r requirements.txt)
 
 # Install PHAL Plugins
+pip3 install https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup/archive/no/balena_and_gui_only.zip
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-notification-widgets
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-network-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-gui-network-client
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-alsa
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-system
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-dashboard
