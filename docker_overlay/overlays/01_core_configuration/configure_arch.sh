@@ -8,8 +8,8 @@ cp -r overlay/* /
 chmod -R ugo+x /opt/ovos
 
 # Add any expected groups
-useradd -G pulse,pulse-access -s /bin/bash pulse
-useradd -G pulse,pulse-access -s /bin/bash pulse-access
+useradd -s /bin/bash pulse
+useradd -s /bin/bash pulse-access
 
 groupadd gpio
 groupadd pulse
