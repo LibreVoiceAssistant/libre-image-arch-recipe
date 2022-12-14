@@ -37,6 +37,6 @@ xvf3510-flash --direct /usr/lib/firmware/xvf3510/app_xvf3510_int_spi_boot_v4_1_0
 # Init TI Amp
 sj201 init-ti-amp
 # Reset LEDs
-sj201 reset-led green
+sj201 reset-led red
 # Reset fan speed
 sj201 set-fan-speed 30
