@@ -31,9 +31,9 @@ systemctl enable mycroft-gui.service
 systemctl enable pulseaudio.service
 systemctl enable NetworkManager.service
 
-pacman --noconfirm -R manjaro-arm-oem-install
-pacman --noconfirm -R plymouth
-
 systemctl disable systemd-firstboot.service
+
+pacman --noconfirm -R manjaro-arm-oem-install
+pacman --noconfirm -R plymouth plymouth-theme-manjaro
 
 echo "OVOS Services installed"
