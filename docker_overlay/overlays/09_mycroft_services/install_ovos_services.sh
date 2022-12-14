@@ -32,5 +32,8 @@ systemctl enable pulseaudio.service
 systemctl enable NetworkManager.service
 
 pacman --noconfirm -R manjaro-arm-oem-install
+pacman --noconfirm -R plymouth
+
+systemctl disable systemd-firstboot.service
 
 echo "OVOS Services installed"
