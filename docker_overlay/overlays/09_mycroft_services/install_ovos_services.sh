@@ -31,4 +31,6 @@ systemctl enable mycroft-gui.service
 systemctl enable pulseaudio.service
 systemctl enable NetworkManager.service
 
+pacman --noconfirm -R manjaro-arm-oem-install
+
 echo "OVOS Services installed"

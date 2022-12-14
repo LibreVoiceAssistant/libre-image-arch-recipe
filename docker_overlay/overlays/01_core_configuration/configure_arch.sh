@@ -38,24 +38,29 @@ usermod -a -G dialout ovos
 echo "Added Groups For User OVOS"
 
 # Add root user to groups
+echo "Adding Root User To Pulse Group"
 usermod -a -G pulse root
+echo "Adding Root User To Pulse-Access Group"
 usermod -a -G pulse-access root
-echo "Added Groups For User Root"
+echo "Completed: Added Groups For User Root"
 
-# Add pulse user to groups
-usermod -a -G pulse pulse
+echo "Adding Pulse User To Pulse-Access Group"
 usermod -a -G pulse-access pulse
+echo "Adding Pulse User To Audio Group"
 usermod -a -G audio pulse
+echo "Adding Pulse User To Video Group"
 usermod -a -G video pulse
-usermod -a -G render pulse
-echo "Added Groups For User Pulse"
+echo "Completed: Added Groups For User Pulse"
 
+echo "Adding Pulse-Access User to Pulse Group"
 usermod -a -G pulse pulse-access
-usermod -a -G pulse-access pulse-access
+
+echo "Adding Pulse-Access User to Audio Group"
 usermod -a -G audio pulse pulse-access
+
+echo "Adding Pulse-Access User to Video Group"
 usermod -a -G video pulse pulse-access
-usermod -a -G render pulse pulse-access
-echo "Added Groups For User Pulse Access"
+echo "Completed: Added Groups For User Pulse Access"
 
 # Enable new services
 systemctl enable resize_fs.service
@@ -63,7 +68,6 @@ systemctl enable resize_fs.service
 # Set TZ
 # TODO - what default to select ?
 echo "America/Los_Angeles" > /etc/timezone
-rm /etc/localtime
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 
 pacman-key --init
@@ -72,8 +76,10 @@ pacman-key --populate archlinuxarm manjaro manjaro-arm
 echo "Installing Base Deps"
 pacman --noconfirm -Syyuu
 pacman --noconfirm -Syu base-devel wget unzip raspberrypi-firmware raspberrypi-userland-aarch64-git glibc-locales
+pacman --noconfirm -Syu python-setuptools python python-gobject libffi swig portaudio mimic mpg123 screen flac curl icu libjpeg-turbo jq pulseaudio pulseaudio-alsa fann sox python-pip python-virtualenv wireless_tools
 pacman --noconfirm -R manjaro-arm-oem-install
-pacman --noconfirm -Syu python-setuptools python python-gobject libffi swig portaudio mimic mpg123 screen flac curl icu libjpeg-turbo jq pulseaudio pulseaudio-alsa fann sox python-pip python-virtualenv
+pacman --noconfirm -R manjaro-arm-installer
+pacman --noconfirm -R manjaro-arm-flasher
 
 echo "Fixing Locale"
 locale-gen
