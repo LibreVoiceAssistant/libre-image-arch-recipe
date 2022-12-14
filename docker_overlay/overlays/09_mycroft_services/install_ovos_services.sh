@@ -34,6 +34,5 @@ systemctl enable NetworkManager.service
 systemctl disable systemd-firstboot.service
 
 pacman --noconfirm -R manjaro-arm-oem-install
-pacman --noconfirm -R plymouth plymouth-theme-manjaro
 
 echo "OVOS Services installed"
