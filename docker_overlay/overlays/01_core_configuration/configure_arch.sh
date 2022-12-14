@@ -8,21 +8,21 @@ cp -r overlay/* /
 chmod -R ugo+x /opt/ovos
 
 # Add pulse groups
-groupadd pulse
-groupadd pulse-access
-echo "Added Groups Pulse and Pulse Access"
-
 groupadd gpio
 groupadd i2c
 groupadd dialout
 echo "Added Groups GPIO I2C Dialout"
 
+useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render -p ovos -s /bin/bash ovos
+
+groupadd pulse
+groupadd pulse-access
+echo "Added Groups Pulse and Pulse Access"
+
 # Add any expected groups
 useradd -g pulse pulse
 useradd -g pulse-access pulse-access
 echo "Added Users Pulse and Pulse Access"
-
-useradd -m -G wheel,sys,audio,input,video,storage,lp,network,users,power,gpio,i2c,dialout,render,pulse,pulse-access -p ovos -s /bin/bash ovos
 
 chpasswd < /opt/ovos/install/pass.txt
 

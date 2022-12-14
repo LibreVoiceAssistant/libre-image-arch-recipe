@@ -8,5 +8,6 @@ cp -rf config.txt /boot/ || exit 2
 
 # Make sure installed packages are properly owned
 chown -R ovos:ovos /home/ovos
+chmod a=r,u+w,a+X /home/ovos
 
 echo "OVOS Boot Fixed"

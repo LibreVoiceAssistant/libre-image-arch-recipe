@@ -7,13 +7,18 @@ cd "${BASE_DIR}" || exit 10
 cp -rf overlay/* / || exit 2
 cd /home/ovos || exit 2
 
+# Upgrade pip
+pip3 install --upgrade pip
+
 # Generic dependencies
 pip3 install wheel
 pip3 install sdnotify
 
 # Lets try the tflite stuff in 3.10
 pip3 install numpy==1.23.5
+pip3 install tensorflow
 pip3 install https://github.com/hjonnala/snippets/blob/main/wheels/python3.10/tflite_runtime-2.5.0.post1-cp310-cp310-linux_x86_64.whl
+pip3 install git+https://github.com/OpenVoiceOS/precise-lite
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core

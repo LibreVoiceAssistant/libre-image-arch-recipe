@@ -35,4 +35,7 @@ systemctl disable systemd-firstboot.service
 
 pacman --noconfirm -R manjaro-arm-oem-install
 
+chown -R ovos:ovos /home/ovos
+chmod a=r,u+w,a+X /home/ovos
+
 echo "OVOS Services installed"
