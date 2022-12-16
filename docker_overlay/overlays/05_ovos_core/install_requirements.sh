@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export XDG_CONFIG_HOME="/home/ovos/.config"
+export XDG_DATA_HOME="/home/ovos/.local/share"
+export XDG_CACHE_HOME="/home/ovos/.cache"
+
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${BASE_DIR}" || exit 10
 # Copy overlay files (default configuration)
@@ -30,10 +34,6 @@ cd /home/ovos/.local/share/mycroft || exit 10
 unzip vosk-model-small-en-us-0.15.zip
 rm vosk-model-small-en-us-0.15.zip
 
-export XDG_CONFIG_HOME="/home/ovos/.config"
-export XDG_DATA_HOME="/home/ovos/.local/share"
-export XDG_CACHE_HOME="/home/ovos/.cache"
-
 mkdir /home/ovos/logs
 
 # Fix home directory permissions
@@ -54,12 +54,9 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-phal
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-audio-plugin
 
 # TTS
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-google-tx
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-pico
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic2
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic3-server
-pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-server-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-google-tx
 pip3 install git+https://github.com/NeonGeckoCom/neon-tts-plugin-larynx_server
 
 # WakeWords
@@ -74,7 +71,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
 mkdir -p /home/ovos/.local/share/mycroft/skills
 
 # Install Skills
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills && git clone -b fix/text_overflow_list https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-setup.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-homescreen skill-ovos-homescreen.openvoiceos)
@@ -107,17 +104,14 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-notes skill-ovos-notes.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-notes.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/ovos-skills-info ovos-skills-info.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/ovos-skills-info.openvoiceos && pip3 install -r requirements.txt)
-
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-wolfie skill-ovos-wolfie.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-wolfie.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/JarbasSkills/skill-youtube-music skill-youtube-music.jarbasskills)
-(cd /home/ovos/.local/share/mycroft/skills/skill-youtube-music.jarbasskills && pip3 install -r requirements.txt)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-youtube-music skill-ovos-youtube-music.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-youtube-music.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/AIIX/food-wizard food-wizard.aiix)
-(cd /home/ovos/.local/share/mycroft/skills/food-wizard.aiix && pip3 install -r requirements.txt)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/food-wizard food-wizard.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills/food-wizard.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-news skill-news.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-news.openvoiceos && pip3 install -r requirements.txt)
@@ -143,6 +137,10 @@ pip3 install filelock
 pip3 install six
 pip3 install cffi
 pip3 install git+https://git.skeh.site/skeh/pyaudio
+pip3 install tutubo
+
+# Workaround To OSM Examples Not Working
+pip3 install https://github.com/OpenVoiceOS/ovos_skill_manager/archive/fix/examples_fetching
 
 # Always have these two in last to be upto date
 pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
@@ -150,6 +148,10 @@ pip3 install git+https://github.com/OpenVoiceOS/OVOS-workshop
 
 # Untar
 (cd /usr/share/mycroft/Mimic2TTSPlugin/kusal/ && tar -xvzf en-us.tar.gz)
+
+# Fix home directory permissions
+chown -R ovos:ovos /home/ovos
+chmod a=r,u+w,a+X /home/ovos
 
 # Setup Completed
 echo "OVOS Core Setup Complete"

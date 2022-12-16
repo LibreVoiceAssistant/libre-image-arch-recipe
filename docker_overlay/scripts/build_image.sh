@@ -9,7 +9,8 @@ set -Ee
 #sudo -n ls || read -s -p "Enter sudo password for $(whoami): " passwd
 ## TODO: Validate password
 
-start=$(date +%s)
+# Should be date in format 22-08-2021-timestamp so it looks like 220821-1629
+start=$(date +%d%m%y-%H%M%S)
 
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 build_dir=${BUILD_DIR:-"${BASE_DIR}/build"}

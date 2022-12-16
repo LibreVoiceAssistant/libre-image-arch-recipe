@@ -6,7 +6,7 @@ cd "${BASE_DIR}" || exit 10
 
 # Install build dependencies
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu meson ninja boost gnutls lttng-ust meson ninja openssl sed gtest doxygen graphviz libevent libtiff
+pacman --noconfirm -Syu meson ninja boost gnutls lttng-ust meson ninja openssl sed gtest doxygen graphviz libevent libtiff libexif
 
 # Clone and build libcamera
 git clone https://github.com/raspberrypi/libcamera.git
