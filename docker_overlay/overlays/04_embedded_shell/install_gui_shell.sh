@@ -5,7 +5,7 @@ cd "${BASE_DIR}" || exit 10
 
 # Install gui base dependencies
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu cmake extra-cmake-modules kio kio-extras plasma-framework kirigami2 kirigami-addons qt5-websockets qt5-webview qt5-declarative qt5-multimedia qt5-quickcontrols2 qt5-webengine qt5-base qt5-virtualkeyboard qt5-location qt5-graphicaleffects qt5-networkauth qt5-svg qt5-tools qt5-xmlpatterns qt5-script libpulse plasma-nm plasma-pa qt5ct gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-plugin-va libva libva-utils ffmpeg qmltermwidget qtav
+pacman --noconfirm -Syu cmake extra-cmake-modules kio kio-extras plasma-framework kirigami2 kirigami-addons qt5-websockets qt5-webview qt5-declarative qt5-multimedia qt5-quickcontrols2 qt5-webengine qt5-base qt5-virtualkeyboard qt5-location qt5-graphicaleffects qt5-networkauth qt5-svg qt5-tools qt5-xmlpatterns qt5-script libpulse plasma-nm plasma-pa qt5ct gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-plugin-va libva libva-utils ffmpeg qmltermwidget qtav kdeconnect
 
 # Install embedded-shell
 git clone https://github.com/OpenVoiceOS/ovos-shell
