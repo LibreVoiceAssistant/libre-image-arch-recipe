@@ -20,7 +20,7 @@ pip3 install sdnotify
 
 # Lets try the tflite stuff in 3.10
 pip3 install numpy==1.23.5
-pip3 install https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.11.0/tflite_runtime-2.11.0-cp310-none-linux_aarch64.whl
+pip3 install https://downloads.openvoiceos.com/tflite_runtime-2.12.0-cp310-cp310-linux_aarch64.whl
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core
@@ -52,6 +52,11 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-phal
 
 # OCP
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-audio-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-youtube-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-bandcamp-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-deezer-plugin
+pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-files-plugin
+
 
 # TTS
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic
@@ -83,11 +88,11 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-camera skill-camera.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-camera.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-alarm skill-ovos-alarm.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-alarm.openvoiceos && pip3 install -r requirements.txt)
-
-(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-timer skill-ovos-timer.openvoiceos)
-(cd /home/ovos/.local/share/mycroft/skills/skill-ovos-timer.openvoiceos && pip3 install -r requirements.txt)
+# (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-alarm skill-ovos-alarm.openvoiceos)
+# (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-alarm.openvoiceos && pip3 install -r requirements.txt)
+#
+# (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-timer skill-ovos-timer.openvoiceos)
+# (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-timer.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-wikipedia skill-ovos-wikipedia.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-wikipedia.openvoiceos && pip3 install -r requirements.txt)
@@ -116,8 +121,12 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-news skill-news.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-news.openvoiceos && pip3 install -r requirements.txt)
 
+# Install Skill Plugins
+pip3 install git+https://github.com/OpenVoiceOS/skill-ovos-filebrowser
+pip3 install git+https://github.com/NeonGeckoCom/skill-alerts
+
 # Install PHAL Plugins
-pip3 install https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup/archive/no/balena_and_gui_only.zip
+pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-wifi-setup
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-notification-widgets
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-network-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-gui-network-client
@@ -128,6 +137,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-brightness-cont
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
+pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-oauth
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant
 
 # Missing Fixes
@@ -139,12 +149,13 @@ pip3 install cffi
 pip3 install git+https://git.skeh.site/skeh/pyaudio
 pip3 install tutubo
 
-# Workaround To OSM Examples Not Working
-pip3 install https://github.com/OpenVoiceOS/ovos_skill_manager/archive/fix/examples_fetching
+# Workarounds
+pip3 install git+https://github.com/OpenVoiceOS/ovos_skill_manager
+pip3 install git+https://github.com/OpenVoiceOS/ovos-backend-client
 
 # Always have these two in last to be upto date
 pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
-pip3 install git+https://github.com/OpenVoiceOS/OVOS-workshop
+pip3 install git+https://github.com/OpenVoiceOS/ovos-workshop
 
 # Untar
 (cd /usr/share/mycroft/Mimic2TTSPlugin/kusal/ && tar -xvzf en-us.tar.gz)
