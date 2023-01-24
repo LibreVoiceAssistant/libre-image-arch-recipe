@@ -76,7 +76,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
 mkdir -p /home/ovos/.local/share/mycroft/skills
 
 # Install Skills
-(cd /home/ovos/.local/share/mycroft/skills && git clone -b fix/text_overflow_list https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-setup.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-homescreen skill-ovos-homescreen.openvoiceos)
