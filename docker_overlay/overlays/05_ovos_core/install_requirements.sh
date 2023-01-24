@@ -138,7 +138,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-color-scheme-ma
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-provider
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-oauth
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant
+pip3 install https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant/archive/feat/socket_client.zip
 
 # Missing Fixes
 pip3 install fann2
