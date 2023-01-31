@@ -24,7 +24,7 @@ pip3 install https://downloads.openvoiceos.com/tflite_runtime-2.12.0-cp310-cp310
 pip3 install git+https://github.com/OpenVoiceOS/ovos-ww-plugin-precise-lite
 
 # Install Core
-pip3 install "git+https://github.com/OpenVoiceOS/ovos-core#egg=ovos_core[all]" || exit 11
+pip3 install "git+https://github.com/OpenVoiceOS/ovos-core.git@fix/ready#egg=ovos_core[all]" || exit 11
 echo "Core Installed"
 
 # Download model files
