@@ -76,13 +76,13 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-stt-server-plugin
 mkdir -p /home/ovos/.local/share/mycroft/skills
 
 # Install Skills
-(cd /home/ovos/.local/share/mycroft/skills && git clone -b "feat/skill_loading_network_change" https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-setup skill-ovos-setup.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-setup.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-homescreen skill-ovos-homescreen.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-homescreen.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone -b "feat/skill_loading_network_change" https://github.com/OpenVoiceOS/skill-ovos-weather skill-ovos-weather.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-weather skill-ovos-weather.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-weather.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-camera skill-camera.openvoiceos)
@@ -94,7 +94,7 @@ mkdir -p /home/ovos/.local/share/mycroft/skills
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-date-time skill-ovos-date-time.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-date-time.openvoiceos && pip3 install -r requirements.txt)
 
-(cd /home/ovos/.local/share/mycroft/skills && git clone -b "feat/skill_loading_network_change" https://github.com/OpenVoiceOS/skill-ovos-volume skill-ovos-volume.openvoiceos)
+(cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-volume skill-ovos-volume.openvoiceos)
 (cd /home/ovos/.local/share/mycroft/skills/skill-ovos-volume.openvoiceos && pip3 install -r requirements.txt)
 
 (cd /home/ovos/.local/share/mycroft/skills && git clone https://github.com/OpenVoiceOS/skill-ovos-stop skill-ovos-stop.openvoiceos)
@@ -133,7 +133,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-p
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-oauth
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant
-pip3 install https://github.com/OpenVoiceOS/ovos-PHAL-plugin-connectivity-events/archive/fix/message.zip
+pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-connectivity-events
 
 # Missing Fixes
 pip3 install fann2
