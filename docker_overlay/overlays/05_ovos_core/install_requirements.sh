@@ -133,7 +133,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-configuration-p
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-ipgeo
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-oauth
 pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-homeassistant
-pip3 install git+https://github.com/OpenVoiceOS/ovos-PHAL-plugin-connectivity-events
+pip3 install https://github.com/OpenVoiceOS/ovos-PHAL-plugin-connectivity-events/archive/fix/message.zip
 
 # Missing Fixes
 pip3 install fann2
