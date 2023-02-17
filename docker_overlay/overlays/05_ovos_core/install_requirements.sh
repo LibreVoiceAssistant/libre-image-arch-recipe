@@ -61,6 +61,7 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-ocp-files-plugin
 # TTS
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic2
+pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-mimic3-server
 pip3 install git+https://github.com/OpenVoiceOS/ovos-tts-plugin-google-tx
 pip3 install git+https://github.com/NeonGeckoCom/neon-tts-plugin-larynx_server
 
