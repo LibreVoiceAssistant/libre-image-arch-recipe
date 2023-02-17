@@ -144,6 +144,9 @@ pip3 install cffi
 pip3 install git+https://git.skeh.site/skeh/pyaudio
 pip3 install tutubo
 
+# Install Misc
+pip3 install neon-mana-utils
+
 # Workarounds
 pip3 install git+https://github.com/OpenVoiceOS/ovos_skill_manager
 pip3 install git+https://github.com/OpenVoiceOS/ovos-backend-client
