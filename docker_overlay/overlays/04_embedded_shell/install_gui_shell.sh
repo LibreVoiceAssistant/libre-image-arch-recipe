@@ -19,9 +19,11 @@ cd "${BASE_DIR}" || exit 10
 rm -rf ovos-shell
 
 # Install GUI
-git clone https://github.com/mycroftai/mycroft-gui
+wget https://github.com/MycroftAI/mycroft-gui/archive/refs/tags/stable-qt5.tar.gz
+tar -xvf stable-qt5.tar.gz
+
 #bash mycroft-gui/dev_setup.sh
-cd mycroft-gui || exit 10
+cd mycroft-gui-stable-qt5 || exit 10
 TOP=$( pwd -L )
 
 echo "Building Mycroft GUI"
