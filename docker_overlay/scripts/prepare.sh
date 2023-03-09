@@ -41,7 +41,6 @@ if [ "${4}" == "mark2" ]; then
 fi
 if [ "${4}" == "generic" ]; then
     echo "Selected generic boot overlay"
-    sudo cp -r ${recipe_dir}/00_boot_overlay_generic/overlays/* mnt/boot/overlays/
     sudo cp -r ${recipe_dir}/00_boot_overlay_generic/config.txt mnt/boot/config.txt
 fi
 sleep 2
