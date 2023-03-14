@@ -31,6 +31,15 @@ load-module module-udev-detect tsched=0
 load-module module-detect
 .endif
 
+### Automatically load driver modules for Bluetooth hardware
+### .ifexists module-bluetooth-policy.so
+### load-module module-bluetooth-policy
+### .endif
+
+### .ifexists module-bluetooth-discover.so
+### load-module module-bluetooth-discover
+### .endif
+
 ### Load several protocols
 .ifexists module-esound-protocol-unix.so
 load-module module-esound-protocol-unix
@@ -52,20 +61,7 @@ load-module module-default-device-restore
 ### Enable positioned event sounds
 load-module module-position-event-sounds
 
-### Assistant Device Audio Settings
+### OpenVoiceOS Audio Settings
 load-module module-role-ducking
-load-module module-combine-sink sink_name=CombinedOutput
-
-# The Comms channel will attenuate all input audio if there is active output
-# The ASR channel will subtract active output and isolate input voice audio
-# https://github.com/xmos/vocalfusion-rpi-setup/blob/master/resources/asoundrc_vf_xvf3510_int
-# https://www.xmos.ai/download/XVF3510-INT-Datasheet(4.1).pdf
-load-module module-remap-source source_name=VF_ASR source_properties="device.description='VocalFusion ASR recording'" master=alsa_input.platform-asoc-simple-card.0.stereo-fallback remix=no master_channel_map=front-left channel_map=mono
-load-module module-remap-source source_name=VF_Comms source_properties="device.description='VocalFusion Comms recording'" master=alsa_input.platform-asoc-simple-card.0.stereo-fallback remix=no master_channel_map=front-right channel_map=mono
-set-default-source VF_ASR
-set-default-sink CombinedOutput
-
-### Enable Echo/Noise-Cancellation
-#load-module module-echo-cancel aec_method=webrtc source_name=echoCancel_source sink_name=echoCancel_sink
-#set-default-source echoCancel_source
-#set-default-sink echoCancel_sink
+load-module module-combine-sink sink_name=OpenVoiceOS
+set-default-sink OpenVoiceOS

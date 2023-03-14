@@ -39,6 +39,10 @@ if [ "${4}" == "mark2" ]; then
     sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/overlays/* mnt/boot/overlays/
     sudo cp -r ${recipe_dir}/00_boot_overlay_mark2/config.txt mnt/boot/config.txt
 fi
+if [ "${4}" == "generic" ]; then
+    echo "Selected generic boot overlay"
+    sudo cp -r ${recipe_dir}/00_boot_overlay_generic/config.txt mnt/boot/config.txt
+fi
 sleep 2
 echo "Boot Files Configured"
 
@@ -83,6 +87,15 @@ if [ "${4}" == "mark2" ]; then
     cp -r "${recipe_dir}/10_fix_boot_mark2" mnt/opt/ovos/install/
 fi
 
+if [ "${4}" == "generic" ]; then
+    echo "export IMAGE_BUILD_TYPE=${4}" >> mnt/opt/ovos/install/vars.sh
+    cp "/scripts/run_scripts_generic.sh" mnt/opt/ovos/install/
+    cp "/scripts/run_scripts_generic.sh" mnt/usr/bin/
+    chmod 777 mnt/usr/bin/run_scripts_generic.sh
+    cp -r "${recipe_dir}/03_generic" mnt/opt/ovos/install/
+    cp -r "${recipe_dir}/10_fix_boot_generic" mnt/opt/ovos/install/
+fi
+
 # # Configure bashrc so script runs on login (chroot)
 if [ "${3}" == "-y" ]; then
      echo "Configuring script to run on chroot"
@@ -91,6 +104,9 @@ if [ "${3}" == "-y" ]; then
      fi
      if [ "${4}" == "mark2" ]; then
         sudo cp "/scripts/bashrc-mark2" mnt/root/.bashrc
+     fi
+     if [ "${4}" == "generic" ]; then
+        sudo cp "/scripts/bashrc-generic" mnt/root/.bashrc
      fi
 fi
 
@@ -103,4 +119,8 @@ fi
 
 if [ "${4}" == "mark2" ]; then
     sudo manjaro-chroot mnt /bin/run_scripts_mark2.sh
+fi
+
+if [ "${4}" == "generic" ]; then
+    sudo manjaro-chroot mnt /bin/run_scripts_generic.sh
 fi

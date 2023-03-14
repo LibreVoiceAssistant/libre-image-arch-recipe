@@ -9,7 +9,8 @@ set -Ee
 #sudo -n ls || read -s -p "Enter sudo password for $(whoami): " passwd
 ## TODO: Validate password
 
-start=$(date +%s)
+# Should be date in format 22-08-2021-timestamp so it looks like 220821-1629
+start=$(date +%d%m%y-%H%M%S)
 
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 build_dir=${BUILD_DIR:-"${BASE_DIR}/build"}
@@ -60,16 +61,16 @@ fi
 
 # Rename completed image file
 filename="ovos-dev-edition-${image_build_type}-${start}.img"
-echo "Writing output file to: ${build_dir}/${filename}-stable"
-mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}-stable"
+echo "Writing output file to: ${build_dir}/${filename}"
+mv "${build_dir}/Manjaro-ARM-minimal-rpi4-22.08.img" "${build_dir}/${filename}"
 
 # Compress image and move to output directory
 echo "Compressing output file. This may take an hour or two..."
 compress_start=$(date +%s)
-xz --compress -T0 "${build_dir}/${filename}-stable" -v
+xz --compress -T0 "${build_dir}/${filename}" -v
 compress_time=$(($(($(date +%s)-compress_start))/60))
 echo "Image compressed in ${compress_time} minutes"
-mv "${build_dir}/${filename}-stable.xz" "${output_dir}/${filename}-stable.xz"
-echo "Image saved to ${output_dir}/${filename}-stable.xz"
+mv "${build_dir}/${filename}.xz" "${output_dir}/${filename}.xz"
+echo "Image saved to ${output_dir}/${filename}.xz"
 runtime=$(($(($(date +%s)-start))/60))
 echo "Image created in ${runtime} minutes"

@@ -17,7 +17,7 @@ cp -r overlay/* /
 chmod -R ugo+x /usr/local/sbin
 chmod -R ugo+x /opt/ovos
 # Configure networking check on startup and restart
-systemctl enable wifi-setup.service
+# systemctl enable wifi-setup.service
 
 # Patch SSH service
 cd /etc/ssh || exit 10

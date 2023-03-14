@@ -1,12 +1,12 @@
 #!/bin/bash
 
-
 BASE_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${BASE_DIR}" || exit 10
 cp -rf overlay/* / || exit 2
 
 # Make sure installed packages are properly owned
 chown -R ovos:ovos /home/ovos
+chmod a=r,u+w,a+X /home/ovos
 
 chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_messagebus.py
 chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_audio.py
@@ -30,5 +30,17 @@ systemctl enable mycroft-gui.service
 
 systemctl enable pulseaudio.service
 systemctl enable NetworkManager.service
+
+systemctl disable systemd-firstboot.service
+
+pacman --noconfirm -R manjaro-arm-oem-install
+
+# Clean up all for a smaller image
+pacman -Scc --noconfirm
+rm -rf /home/ovos/.cache/pip
+chown -R ovos:ovos /home/ovos/.cache
+chown -R ovos:ovos /home/ovos/.config
+chown -R ovos:ovos /home/ovos
+chmod a=r,u+w,a+X /home/ovos
 
 echo "OVOS Services installed"
