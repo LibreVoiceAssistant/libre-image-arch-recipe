@@ -156,6 +156,11 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos-backend-client
 pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
 pip3 install git+https://github.com/OpenVoiceOS/ovos-workshop
 
+# Install Quiet.py
+pip3 install pycryptodome
+pip3 install voice-engine
+pip3 install --no-deps quiet.py
+
 # Untar
 (cd /usr/share/mycroft/Mimic2TTSPlugin/kusal/ && tar -xvzf en-us.tar.gz)
 
