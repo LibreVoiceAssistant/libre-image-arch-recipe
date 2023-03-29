@@ -157,8 +157,6 @@ pip3 install git+https://github.com/OpenVoiceOS/ovos_utils
 pip3 install git+https://github.com/OpenVoiceOS/ovos-workshop
 
 # Install Quiet.py
-pip3 install pycryptodome
-pip3 install voice-engine
 pip3 install --no-deps quiet.py
 
 # Untar

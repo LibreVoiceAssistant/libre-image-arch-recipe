@@ -14,6 +14,7 @@ chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_gui.py
 chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_phal.py
 chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_voice.py
 chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_skills.py
+chmod 777 /home/ovos/.local/share/systemd/mycroft-systemd_admin_phal.py
 
 mkdir -p /var/log/ovos/
 chmod -R 777 /var/log/ovos/
@@ -27,6 +28,7 @@ systemctl enable mycroft-voice.service
 systemctl enable mycroft-audio.service
 systemctl enable mycroft-phal.service
 systemctl enable mycroft-gui.service
+systemctl enable mycroft-admin-phal.service
 
 systemctl enable pulseaudio.service
 systemctl enable NetworkManager.service
