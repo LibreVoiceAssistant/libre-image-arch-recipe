@@ -32,8 +32,8 @@ revision=$(sj201 get-revision)
 if [ "${revision}" == "10" ]; then
     echo "Setting screen brightness to 0"
     echo 0 > /sys/class/backlight/rpi_backlight/brightness
-    echo "Setting fan speed to 0"
-    sj201 set-fan-speed 0
+    # echo "Setting fan speed to 0"
+    # sj201 set-fan-speed 0
     while true; do
         sleep 100
     done

@@ -15,7 +15,7 @@ chmod ugo+x /opt/ovos/configure_sj201_on_boot.sh
 
 # Install system dependencies
 pacman --noconfirm -Syyuu
-pacman --noconfirm -Syu python-pip i2c-tools pulseaudio pulseaudio-zeroconf alsa-utils git
+pacman --noconfirm -Syu python-pip i2c-tools pulseaudio pulseaudio-zeroconf alsa-utils git dtc
 CFLAGS="-fcommon" pip install smbus smbus2 spidev rpi.gpio
 
 pip3 install sj201-interface
@@ -69,6 +69,8 @@ systemctl enable pulseaudio.service
 systemctl enable sj201
 systemctl enable sj201-shutdown
 systemctl enable poweroff
+
+dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/sj201-pwm-fan.dtbo /opt/ovos/builds/sj201/sj201-pwm-fan-overlay.dts
 
 echo "Audio Setup Complete"
 

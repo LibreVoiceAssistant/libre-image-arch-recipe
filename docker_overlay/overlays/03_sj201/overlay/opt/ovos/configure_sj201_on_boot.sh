@@ -38,5 +38,9 @@ xvf3510-flash --direct /usr/lib/firmware/xvf3510/app_xvf3510_int_spi_boot_v4_1_0
 sj201 init-ti-amp
 # Reset LEDs
 sj201 reset-led red
-# Reset fan speed
-sj201 set-fan-speed 30
+
+## `sj201 set-fan-speed` is replaced with Kernel control of the fan
+## using PWM-Fan device-tree overlay. DO NOT call `sj201 set-fan-speed`
+## after start up as this will reconfigure GPIO13 from using the 
+## Hardware PWM mode configure via Device Tree with Software PWM
+# sj201 set-fan-speed 30
