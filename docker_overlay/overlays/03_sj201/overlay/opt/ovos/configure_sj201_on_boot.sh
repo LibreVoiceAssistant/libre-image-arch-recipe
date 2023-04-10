@@ -29,6 +29,8 @@
 
 # This needs to run as root
 
+revision=$(sj201 get-revision)
+
 # Enable Driver Overlay
 # dtoverlay xvf3510
 
@@ -39,8 +41,10 @@ sj201 init-ti-amp
 # Reset LEDs
 sj201 reset-led red
 
-## `sj201 set-fan-speed` is replaced with Kernel control of the fan
+## In Rev10, `sj201 set-fan-speed` is replaced with Kernel control of the fan
 ## using PWM-Fan device-tree overlay. DO NOT call `sj201 set-fan-speed`
 ## after start up as this will reconfigure GPIO13 from using the 
 ## Hardware PWM mode configure via Device Tree with Software PWM
-# sj201 set-fan-speed 30
+if [ "${revision}" != "10" ]; then
+    sj201 set-fan-speed 30
+fi
