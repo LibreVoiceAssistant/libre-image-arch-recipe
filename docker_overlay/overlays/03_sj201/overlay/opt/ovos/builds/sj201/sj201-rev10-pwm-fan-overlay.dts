@@ -33,15 +33,16 @@
 	fragment@2 {
 		target-path = "/";
 		__overlay__ {
-			fan0: sj201-pwm-fan@0 {
+			fan0: sj201-rev10-pwm-fan@0 {
 				compatible = "pwm-fan";
 				cooling-min-state = <0>;
 				cooling-max-state = <4>;
 				#cooling-cells = <2>;
-				//polarity of the fan signal is inverted. 255, i.e. Logic 1 means FAN is Off, Logic 0 FAN is 100% on
+				// Polarity of the fan signal is inverted. 255, i.e. Logic 1 means FAN is Off, Logic 0 FAN is 100% on
 				cooling-levels = <255 192 129 66 0>;
 				pwms = <&pwm 1 1000000>;
-                                reset-gpios = <&gpio 13 0>;
+				// Start with fan OFF
+                reset-gpios = <&gpio 13 1>;
 				status = "okay";
 			};
 		};

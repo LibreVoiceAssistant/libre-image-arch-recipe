@@ -70,7 +70,7 @@ systemctl enable sj201
 systemctl enable sj201-shutdown
 systemctl enable poweroff
 
-dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/sj201-pwm-fan.dtbo /opt/ovos/builds/sj201/sj201-pwm-fan-overlay.dts
+dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/sj201-rev10-pwm-fan.dtbo /opt/ovos/builds/sj201/sj201-rev10-pwm-fan-overlay.dts
 
 echo "Audio Setup Complete"
 
