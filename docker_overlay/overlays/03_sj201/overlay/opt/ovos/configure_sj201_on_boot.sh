@@ -42,10 +42,7 @@ sj201 init-ti-amp
 sj201 reset-led red
 
 # Reset fan speed
+## In Rev10, `sj201 set-fan-speed` is replaced with Kernel control of the fan using PWM-Fan device-tree overlay. 
 if [ "${revision}" != "10" ]; then
     sj201 set-fan-speed 30
-else
-    ## In Rev10, `sj201 set-fan-speed` is replaced with Kernel control of the fan
-    ## using PWM-Fan device-tree overlay. 
-    /opt/vc/bin/dtoverlay sj201-rev10-pwm-fan
 fi

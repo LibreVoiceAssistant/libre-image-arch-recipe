@@ -70,7 +70,14 @@ systemctl enable sj201
 systemctl enable sj201-shutdown
 systemctl enable poweroff
 
-dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/sj201-rev10-pwm-fan.dtbo /opt/ovos/builds/sj201/sj201-rev10-pwm-fan-overlay.dts
+revision=$(sj201 get-revision)
+echo "Current SJ201 revision is: $revision"
+
+if [ "${revision}" == "10" ]; then
+    echo "Configuring SJ201 rev10 overlay driver and adding an on-boot overlay"
+    dtc -@ -Hepapr -I dts -O dtb -o /boot/overlays/sj201-rev10-pwm-fan.dtbo /opt/ovos/builds/sj201/sj201-rev10-pwm-fan-overlay.dts
+    echo -e "\ndtoverlay=sj201-rev10-pwm-fan" >> /boot/config.txt
+fi
 
 echo "Audio Setup Complete"
 

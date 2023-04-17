@@ -68,7 +68,7 @@
 				};
 				trip3: trip3 {
 					temperature = <60000>;
-					hysteresis = <2000>;
+					hysteresis = <4000>;
 					type = "active";
 				};
 			};
