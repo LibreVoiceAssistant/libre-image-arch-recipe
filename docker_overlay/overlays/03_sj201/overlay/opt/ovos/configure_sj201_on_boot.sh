@@ -47,5 +47,5 @@ if [ "${revision}" != "10" ]; then
 else
     ## In Rev10, `sj201 set-fan-speed` is replaced with Kernel control of the fan
     ## using PWM-Fan device-tree overlay. 
-    dtoverlay sj201-rev10-pwm-fan
+    /opt/vc/bin/dtoverlay sj201-rev10-pwm-fan
 fi
