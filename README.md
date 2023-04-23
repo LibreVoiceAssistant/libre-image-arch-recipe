@@ -25,7 +25,7 @@ Manjaro arch image recipe has support for building images for two different hard
 
 ``` shell
 docker run --privileged \
--v $pwd/output/:/output:rw \
+-v ${PWD}/output/:/output:rw \
 -v /run/systemd/resolve:/run/systemd/resolve \
 -e CORE_REF=${CORE_REF:-dev} \
 -e RECIPE_REF=${RECIPE_REF:-master} \
@@ -40,7 +40,7 @@ ovos-image-builder
 
 ``` shell
 docker run --privileged \
--v $pwd/output/:/output:rw \
+-v ${PWD}/output/:/output:rw \
 -v /run/systemd/resolve:/run/systemd/resolve \
 -e CORE_REF=${CORE_REF:-dev} \
 -e RECIPE_REF=${RECIPE_REF:-master} \
