@@ -8,7 +8,7 @@ After=mycroft-messagebus.service
 User=root
 Type=notify
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/home/ovos/.local/share/systemd/mycroft-systemd_admin_phal.py
+ExecStart=/usr/bin/python3 /home/ovos/.local/share/systemd/mycroft-systemd_admin_phal.py
 StandardOutput=append:/var/log/ovos/admin_phal.log
 StandardError=file:/var/log/ovos/admin_phal.error.log
 TimeoutStartSec=1m
