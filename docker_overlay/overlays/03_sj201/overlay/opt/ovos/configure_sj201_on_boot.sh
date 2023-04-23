@@ -29,8 +29,6 @@
 
 # This needs to run as root
 
-revision=$(sj201 get-revision)
-
 # Enable Driver Overlay
 # dtoverlay xvf3510
 
@@ -41,6 +39,8 @@ sj201 init-ti-amp
 # Reset LEDs
 sj201 reset-led red
 
+revision=$(sj201 get-revision)
+echo "Current SJ201 Revision: $revision"
 # Reset fan speed
 if [ "${revision}" != "10" ]; then
     sj201 set-fan-speed 30
