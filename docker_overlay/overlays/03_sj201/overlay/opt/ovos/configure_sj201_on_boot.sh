@@ -49,5 +49,5 @@ fi
 if [ "${revision}" == "10" ]; then
     ## Registering the R10 overlay in boot config if not present.
     ## However, it will only be loaded on the next reboot
-    grep -qxF 'dtoverlay=sj201-rev10-pwm-fan' /boot/config.txt || echo -e "\ndtoverlay=sj201-rev10-pwm-fan" >> /boot/config.txt
+    grep -qF 'dtoverlay=sj201-rev10-pwm-fan' /boot/config.txt || echo -e "\ndtoverlay=sj201-rev10-pwm-fan" >> /boot/config.txt
 fi
