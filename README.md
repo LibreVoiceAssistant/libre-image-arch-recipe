@@ -1,4 +1,9 @@
 # ovos-image-arch-recipe
+
+This repository is no longer maintainer by OpenVoiceOS and remains only as reference, no new images are being built
+
+_____________
+
 Manjaro arch based recipe for building OVOS images
 
 ## Docker Automated Image Building
